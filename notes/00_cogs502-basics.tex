@@ -1,0 +1,775 @@
+\documentclass[11pt]{article}
+
+\usepackage[nohide]{ulecnot}
+\usepackage{natbib,unatbib}
+\pagestyle{fancy}
+\lhead{COGS 502 -- Programming and Logic}
+\chead{Mathematical Preliminaries}
+\rhead{Last update \it \today}
+\lfoot{Umut \"Ozge -- \href{mailto:umozge@metu.edu.tr}{\nolinkurl{umozge@metu.edu.tr}}}
+\cfoot{}
+\rfoot{Page \thepage/\pageref{LastPage}}
+	\setlength{\headheight}{13.6pt}
+
+\begin{document}
+\tableofcontents
+
+\section{Sets}
+
+\subsection{Basic notions}
+\begin{itemize}
+
+\item A fundamental activity in science is to characterize classes\footnote{We
+use ``class'' in a non-technical, non-set-theoretic sense.} of objects.
+Physics: body, electrical charge, spin; 
+Biology: living cell, protein folding; 
+Sociology: identity, social class; 
+all these are classes of concrete or abstract objects.
+Any examples from Cognitive Science?
+
+\item The mathematical construct \uterm{set} provides the clearest model of this
+activity.
+
+\item Listing the objects belonging to it is the most basic and intuitive way of
+specifying a set. You simply list the objects within curly braces, separated by
+commas. Here is an example: 
+
+\[
+\{\text{``Mu\c s''},\text{``Van''}\}
+\]
+
+\item You can pick a symbol to name your set, say $A$:
+
+\[
+A=\{\text{``Mu\c s''},\text{``Van''}\}
+\]
+
+\item When an object $x$ belongs to a set $X$, we say that $x$ is an
+\uterm{element} or \uterm{member} of $X$, symbolically,\footnote{Note that the
+case of letters is important in mathematics and programming.} 
+
+	\[
+x\in X 
+\] 
+
+\item[] so
+\[
+\text{``Van''} \in A 
+\]
+
+\item Non-membership is stated via `$\notin$':
+\[
+\text{``Seattle''} \notin A
+\]
+
+\item For any object $x$ and any set $Y$, exactly one of the following holds: $x
+\in Y$, $x\notin Y$. There are no cases in between.
+
+\item An object may belong to more than one set. For instance the word ``Mu\c
+s'' is an element of many other sets in addition to $A$ above, say the following
+set $B$:
+
+\[
+B=\{2,\text{``Mu\c s''},\text{``Artvin''}, \text{``France''}\}
+\]
+
+\item Our example set $B$ illustrates that there is no
+requirement that the elements of a set should be ``similar'' in an intuitive
+sense. $B$ has different kinds of elements, and this is perfectly OK. However in
+almost all mathematical uses of sets there will be a unifying property. 
+
+\item We said the same object can belong to more than one set, however, an
+object may belong to a particular set only once. Therefore 
+$\{\text{``Mu\c s''},\text{``Van''},\text{``Mu\c s''}\}$ is no different than
+$\{\text{``Mu\c s''},\text{``Van''}\}$. In other words, repetitions do not count
+in a set.
+
+\item The order of elements does not matter in sets. Absolutely no difference between
+$\{\text{``Mu\c s''},\text{``Van''}\}$ and $\{\text{``Van''},\text{``Mu\c
+s''}\}$.
+
+\item The set with no elements is \uterm{the empty set}, denoted as
+`$\emptyset$'. We say \emph{the} empty set, because there is one and only one
+empty set.\footnote{Why this is so will get clarified in Section~\ref{eqsec},
+where we discuss equality.}
+
+\item Sets can have sets as elements. Therefore sets themselves are objects.
+The following is a legitimate set:
+
+
+\[
+C=\{2,\{3,4\},\text{``Mu\c s''},\{\text{``Artvin''}, \text{``France''}\}\}
+\]
+
+When you need to be more specific in your use of ``object'', you can call
+objects that are not sets \uterm{atomic} objects, and the rest
+\uterm{non-atomic} objects.
+
+\hrulefill 
+\begin{uexercise}\label{ex-part} Imagine you are running an
+experiment, in which  you will obtain some measurements from trials. You run a
+trial and you obtain an integer, you run another one, you have another integer,
+for, say, 50 trials. You don't know in advance the range of possible values for
+measurements, they can be any integer. Imagine further that you need to
+accumulate measurements somewhere, so that you can sum them up, or do other
+things, after you finish experimenting.  You also want to keep which measurement
+comes from which trial. For this task, you are allowed to use sets and integers,
+and nothing else.  How would you do this?  
+\end{uexercise} 
+\hrulefill
+
+\item So far, so good with representing sets by listing their elements.
+This is, fortunately, not the only way of representing sets. You can
+characterize a set by giving a property that uniquely identifies the elements of
+that set. For instance, the set $A$ above could have been characterized as the
+set of Turkish city names with less than
+four letters. This would be equivalent to listing the elements that fulfil the
+given criterion.
+
+\item The listing method is sometimes called ``definition by
+extension'', and the common property method is called ``definition by
+intension'' \cttxp[12]{russell19}.\footnote{``Intension'' and ``extension'' are
+important concepts that will come up again in the future. But for now we need
+them simply as names to call two different ways of characterizing sets. Do not
+try to memorize them.}
+
+\item Definition by intension (aka\footnote{`Also known as.'} intensional definition) is ``superior'' to
+extensional definition. The superiority comes from the fact that all the sets
+defined by extension can be defined by intension as well. However, the converse
+does not hold, namely you cannot give an extensional definition for every set
+you defined by intension.
+
+\item[] First, there are sets where you may not identify all the elements
+belonging to it. Examples?
+
+\item[] Second, there are sets where you \emph{cannot} identify all the
+elements belonging to it, because regardless of how many elements you
+list, there will always be elements that you have left out, actually infinitely
+many of them. These are infinite sets.
+
+\item Both problems are addressed in the same way, and it is actually very
+seldom that you list the elements of a set. Instead, as we already started to
+see above, one provides a \uterm{decision procedure} or a number of
+\uterm{membership criteria}, which gives you a ``yes'' or ``no'' answer, for any
+given object, according to whether it is the element of the set or not.
+
+\item[]Here are two very common \uterm{infinite} sets, the set of natural numbers and the set of integers:
+
+
+\[
+\mathbb{N} = \{0,1,2,3,\ldots\}
+\]
+
+\[
+\mathbb{Z} = \{\ldots,-3,-2,-1,0,1,2,3,\ldots\}
+\]
+
+\item In some cases membership criteria is left implicit. 
+Here is a finite set of that sort:
+\[
+K = \crbr{2,4,6,\ldots,90}
+\]
+
+\item[]and here is one which is infinite:
+
+\[
+K = \crbr{2,4,6,\ldots}
+\]
+
+\end{itemize}
+
+
+\begin{itemize}
+\item Another common method is \uterm{predicate} (or \uterm{set-builder}) notation, which has
+some variants:
+\end{itemize}
+
+
+\begin{align}
+\setcomp{x}{x \in \mathbb{N} \text{ and }7 < x < 11}
+\end{align}
+\begin{align}
+\setcomp{x \in \mathbb{N}}{7 < x < 11}
+\end{align}
+\begin{align}
+\setcomp{x + y}{x, y \in \mathbb{N}\text{ and }7 < x < 11\text{ and }1 < y < 4}
+\end{align}
+
+
+\begin{itemize}
+
+\item You can also think of a set as a \uterm{rule}. A rule that dictates what
+belongs to it and what does not.
+
+\item[] Here is a more thorough specification of membership in the set of natural
+numbers -- don't worry if you don't
+understand this fully now:
+
+
+\hrulefill
+\begin{udefinition}{What is a natural number?}
+\begin{itemize}
+\item[i.] 0 is a natural number (written $0\in\mathbb{N}$);
+\item[ii.] if $n\in\mathbb{N}$, then  $n+1\in\mathbb{N}$; 
+\item[iii.] If something is not a natural number according to (i) or (ii), then
+it is not a natural number.\footnote{As an exercise in logic, try to tell the
+same thing with \emph{unless}, \emph{only if}, \emph{except}, and \emph{nothing
+else}.  What other ways are there to tell it?  Do these work also in Turkish?}
+\end{itemize}
+\end{udefinition}
+\hrulefill
+
+\end{itemize}
+
+\ezimeti{
+\item For any set $A$, the number of elements in it is called the
+\uterm{cardinality} of $A$, depicted as $|A|$.
+
+\hrulefill
+\begin{uexercise}\label{ex-card}
+What is the cardinality of the following sets:
+\begin{itemize}
+\item[a.]$\{1,\{2,\{3,\{4\}\}\}\}$
+\item[b.]$\emptyset$
+\item[c.]$\{\emptyset\}$
+\item[d.]$\{\emptyset,1\}$
+\item[e.]$\{\emptyset,0,1\}$
+\end{itemize}
+\end{uexercise}
+\hrulefill
+}
+
+\begin{comment}
+\ezimeti{ 
+\item Before moving on, a word on ``objects''. In this course, we will
+deal with (sets of) mathematical objects. 
+
+\item[] A mathematical object is an object that exists in the abstract world of
+mathematics. Among these are symbols, numbers, functions, relations, sets, and
+so on. Therefore our set of Turkish city names above is ``degenerate'' as its
+elements -- the two city names -- are not mathematical objects. But don't worry,
+we will see that we can easily give mathematical definitions that can take the
+place of city names.
+}
+\end{comment}
+
+\subsection{Equality, subset, set operations}
+\label{eqsec}
+\ezimeti{
+\item[] {\bf Equality:}
+
+\item[] Two sets are equal if and only if they have the same elements.
+
+\item[] {\bf Subset:}
+
+\item[] For any sets $A$ and $B$, \\ $A$ is a \uterm{subset} of (or included in) $B$, written $A \subseteq B$, if and only if each element in $A$ is also in $B$.
+
+\item[] For any sets $A$ and $B$, \\ $A$ is a \uterm{proper subset} of $B$, written $A \subset B$, if and only if each element in $A$ is also in $B$ and
+there is at least one $a \in B$, such that $a \notin A$.
+
+\item Given any set $A$, is $A\subseteq A$?
+
+\item Given any set $A$, what can you say about $\emptyset \subseteq A$?
+
+\item Given the notion of equality and subsethood, can you see why the following
+holds?
+
+\item[] For any sets $A$ and $B$, \\ $A$ is \uterm{equal} to $B$, written $A
+= B$, if and only if $A \subseteq B$ and $B \subseteq A$.
+
+}
+
+\ezimeti{
+\item[] {\bf Set operations:}
+
+\item[]{\bf Union}:
+
+\item[] Given two sets $A$ and $B$, \\ The union of $A$ and $B$, written $A \cup
+ B$, is the set of objects that are elements of at least one of $A$ and $B$. 
+
+
+\item[]{\bf Intersection}:
+
+\item[] Given two sets $A$ and $B$, \\ The intersection of $A$ and $B$, written $A \cap
+ B$, is the set of objects that are elements of both $A$ and $B$. 
+
+\item[]{\bf Difference}:
+
+\item[] Given two sets $A$ and $B$, \\ The difference of $A$ and $B$, written $A
+- B$, is the set of objects that are elements of $A$ but not $B$. 
+
+\hrulefill
+\begin{uexercise} \label{ex-prednot}
+	Define $A\cup B$,\  $A\cap B$ and $A - B$ in predicate notation.
+\end{uexercise}
+\hrulefill
+
+
+\item Two sets are \uterm{disjoint} if they have no element in common, their
+intersection is $\emptyset$.
+
+\item Here are some properties of set operations:
+\item[] 
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{ll}
+{\bf Idempotency:} 		& $A\cup A = A$ \\
+						& $A\cap A = A$ \\
+{\bf Commutativity:}	& $A\cup B  = B\cup A$\\
+						& $A\cap B  = B\cap A$\\
+{\bf Associativity:} 	& $A\cap (B \cap C) = (A\cap B) \cap C$\\
+						 & $A\cup (B \cup C) = (A\cup B) \cup C$\\
+
+{\bf Distributivity:} 	& $A\cap(B\cup C) = (A\cap B)\cup (A\cap C)$\\
+						& $A\cup(B\cap C) = (A\cup B)\cap (A\cup C)$\\
+{\bf DeMorgan's Laws:} 	& $A - (B\cup C) = (A-B) \cap (A-C)$  \\
+					 	& $A - (B\cap C) = (A-B) \cup (A-C)$ 
+\end{tabular}
+
+% \begin{comment}
+% {\bf Associativity:} 	& $A\kappa (B \kappa C) = (A\kappa B) \kappa C$, for
+% $\kappa \in \crbr{\cap,\cup}$\\
+% \end{comment}
+
+\item No need to memorize these, they all follow from the basic definitions we
+had above. Do not try to memorize anything -- except perhaps some names -- in
+this course, it is not the right way to
+learn mathematics.  
+
+
+\hrulefill
+\begin{uexercise}
+\begin{itemize}
+\item[]
+\item[*a.]\label{ex-dist} Write the distributivity property by using variables over set operations.
+\item[*b.]\label{ex-demorg} Show that DeMorgan's Laws hold.  Concentrate on what is required for
+two sets to be equal.
+\end{itemize}
+\end{uexercise}
+\hrulefill
+
+
+\item It is possible to take the union or intersection of more than two sets. Given a set of sets $A$:
+\begin{align*}
+	\bigcup A = \crbr{a\, |\, a \in B\text{ for some }B \in A}\\
+	\bigcap A = \crbr{a\, |\, a \in B\text{ for each }B \in A}
+\end{align*}
+
+}
+
+\subsection{Power set and partition}
+
+\ezimeti{
+\item[] {\bf Power set:}
+
+\item[] For any set $A$, \\ The \uterm{power set} of $A$, written
+$\mathcal{P}(A)$, or $\mathrm{Pow}(A)$, is the set of all subsets of $A$.
+
+\item[] {\bf Partition:}
+
+\item[] For any set $A$, \\ A \uterm{partition} of $A$, is a set $\Pi \subseteq
+\mathcal{P}(A)$ such that:
+
+\ezimeti{
+\item[i.] $\emptyset \notin \Pi$;
+\item[ii.] any two distinct members of $\Pi$ are disjoint; 
+\item[iii.] $\bigcup \Pi = A$.
+}
+\hrulefill
+\begin{uexercise}
+\label{ex-partit}
+\begin{enumerate}
+\item[]
+\item[a.] Define proper subsethood in terms of '$\subseteq$', you can negate it as '$\not\subseteq$' if you need to. 
+\item[b.] Given $A \not\subseteq B$, what can you tell about $A$?
+\item[c.] Give a partition of $A = \emptyset$.
+\end{enumerate} \end{uexercise} \hrulefill
+}
+
+
+\section{Relations}
+\ezimeti{
+\item Up to now we saw objects and their collections, sets. Mathematics
+extensively deals with \uterm{relations} between objects. 
+
+\item We have already seen some relations; one is the membership relation designated
+with `$\in$'. It relates objects with sets that they are members of, say, $a\in
+\crbr{a,b,c}$. Membership is a \uterm{two-place} (or \uterm{binary}) relation,
+since it relates two things -- the technical term for things related is
+\uterm{relata}, and \uterm{relatum} for singular. Generally there can be
+\emph{n}-ary relations. Some examples?  
+
+\item[] The mathematical way of representing binary relations is -- rather
+weirdly you may find -- to form the set of pairs of related objects. For
+instance, `less than' relation is the set of pairs of numbers, where the first
+number in each pair is less than the second.
+
+\item[] Therefore, in order to represent relations, we need a way to represent pairs.
+
+\item Now comes a new type of object:
+\item[] {\bf Tuple:}
+\[
+(o_1,o_2,\ldots,o_n)
+\]
+\item[] Order and repetition matter: $(a,a,b)\, \neq\, (a,b)\, \neq\, (b,a)$.
+\item[] Terminology: ``ordered pair'' for 2-tuple, ``ordered triple'' for
+3-tuple, and so on.
+
+
+
+\item The Cartesian \uterm{product} of two sets:
+\[
+A \times B = \crbr{(a,b)|\, a \in A,\, b \in B}
+\]
+
+
+generally, the product of $n$ sets:
+
+
+\[
+A_1 \times A_2 \times\ldots\times A_n = \crbr{(a_1,a_2,\ldots,a_n) | a_i \in A_i}
+\]
+
+
+\hrulefill
+\begin{uexercise}\label{ex-prod}
+\ezimeti{
+\item[]
+\item[a.]Give the product of $\crbr{1,2,3}$ and $\crbr{a,b,c}$.
+\item[b.]Give the product of $\crbr{a,b,c}$ and $\emptyset$.
+\item[*c.] Think of a way to represent ordered pairs as sets.
+}
+\end{uexercise}
+\hrulefill
+
+
+\item A \uterm{binary relation} on sets $A$ and $B$ is a subset of $A \times B$.  
+
+\item[] For instance $\crbr{(a,\crbr{a}),(b,\crbr{a})}$  is a binary relation on
+$\crbr{a,b,c}$ and $\crbr{\crbr{a},\crbr{b},c}$.
+
+\item Generally an $n$-ary relation on sets $A_1,\ldots,A_n$ is a subset of
+$A_1\times\ldots\times A_n$.
+
+
+\item There is no requirement that $A_i$s  be distinct, when they are the same,
+abbreviate $A_1\times\ldots\times A_n$ as $A^n$.
+
+\item[] For instance `less than' is a subset of $\mathbb{N}^2$, namely:
+
+\[
+\crbr{(i,j) |\, i,j \in \mathbb{N} \text{ and } i < j}
+\]
+
+\item The \uterm{domain} of a relation $R\, \subseteq\, A\times B$:
+\[
+	\crbr{a\,|\, \text{there is a } b\in B \text{ such that }  (a,b)\, \in\, R}
+\]
+
+\item The \uterm{range} of a relation $R\, \subseteq\, A\times B$:
+\[
+	\crbr{b\,|\, \text{there is an } a\in A \text{ such that }  (a,b)\, \in\, R}
+\]
+
+\item Any binary relation $R\subseteq A\times B$ has an \uterm{inverse} $R^{-1}
+\subseteq B\times A$ defined as:
+\[
+R^{-1}=\crbr{(b,a)\,|\, (a,b) \in R}
+\]
+
+}
+
+\subsection{Some properties of binary relations}
+\ezimeti{
+\item Certain types of relations are of special interest due to way they are
+structured.
+
+\item Let's focus on binary relations on a single set, $R\subseteq A\times A$.
+
+
+\item[]{\bf Reflexivity:}
+
+A relation $R\subseteq A\times A$ is \uterm{reflexive} if and only if for each
+$x \in A$, $(x,x) \in R$.
+
+A relation is \uterm{nonreflexive}, if it is not reflexive.
+
+A relation $R\subseteq A\times A$ is \uterm{irreflexive}, if for each $(x,y) \in
+R$,  $x\neq y$.
+
+
+\item[] {\bf Symmetry:}
+
+A relation $R\subseteq A\times A$ is \uterm{symmetric} if and only if for each
+$(x,y) \in R$, $(y,x)$ is also in $R$.
+
+A relation $R\subseteq A\times A$ is \uterm{nonsymmetric} if and only if 
+for some $(x,y) \in R$,  $(y,x)$ is not in $R$.
+
+A relation $R\subseteq A\times A$ is \uterm{asymmetric} if and only if for each
+$(x,y) \in R$, $(y,x)$ is not in $R$.
+
+A relation $R\subseteq A\times A$ is \uterm{anti-symmetric} if and only if
+whenever $(x,y)$ and $(y,x)$ are  in $R$,  then $x=y$.
+
+\item[] {\bf Transitivity:}
+
+A relation $R\subseteq A\times A$ is \uterm{transitive} if and only if
+whenever $(x,y)$ and $(y,z)$ are  in $R$,  then $(x,z)$ is also in $R$.
+
+A relation is \uterm{nontransitive}, if it is not
+transitive.
+
+A relation $R\subseteq A\times A$ is \uterm{intransitive} if and only if
+for no pair $(x,y)$ and $(y,z)$  in $R$,  $(x,z)$ is in $R$.
+
+
+\item[] {\bf Connectedness:}
+
+
+A relation $R\subseteq A\times A$ is \uterm{connected} if and only if for each
+$x$, $y \in A$ where $x\neq y$, either $(x,y)$, $(y,x)$ or both are in $R$.
+
+
+\item Our final special type of relation is \uterm{equivalence relation}, which
+is reflexive, symmetric and transitive.
+
+\hrulefill
+\begin{uexercise}\label{ex-relprop}
+\ezimeti{
+\item[]
+\item[a.] State the properties of the following relations defined over set of
+humans: `spouse', `ancestor', `sister', `sibling', `father', `child', `admire',
+`identical', `older than', `older than or at the same age as', `has the same hight as', `has the same biological
+father', `has the same cousin'.
+\item[b.] 
+Give other examples for each type of relation from $\mathbb{N}^2$ and/or
+$H^2$, where $H$ is the set of humans.
+}
+\end{uexercise}
+\hrulefill
+}
+\section{Functions}
+
+\ezimeti{
+\item A \uterm{function} is a special type of relation.
+
+\item A function from set $A$ to set $B$ is a relation $R\, \subseteq\,  A \times B$,\\
+such that for each $a\, \in\, A$ there is exactly one pair in $R$ with $a$ as
+the first component.
+
+\hrulefill
+\begin{uexercise}\label{ex-is}
+Is $\crbr{(a,\crbr{a}),(b,\crbr{a}),(c,c)}$  a function 
+from $\crbr{a,b,c}$ to $\crbr{\crbr{a},\crbr{b},c}$?
+\end{uexercise}
+\hrulefill
+
+\item  Letters $f$, $g$, $h$ are usually reserved for representing functions.
+
+\item You can think of a function as a mapping from a set to another, written\\
+$f:A\rightarrow B$.
+
+\item[] For an $a\, \in\, A$, $f(a)\, \in\, B$ is called the \uterm{image} of
+$a$ under $f$, or simply $f$ of $a$.
+
+\item[] Given any set \sysm{A'\subseteq A}, the image of \sysm{A'} under
+\sysm{f}:
+\[
+\crbr{b\,|\, f(a)=b\text{ for some } a\in A'}
+\]
+
+\item[] For any function $f:A\rightarrow B$,\\
+the \uterm{domain} of \sysm{f}, denoted by Dom(\sysm{f}), is\ldots\\
+the \uterm{range} of \sysm{f} is denoted by Ran(\sysm{f}), and
+\sysm{\mathrm{Ran}(f)\ldots}
+
+
+\item[] Seen as a mapping, the condition for functionhood is that the function
+maps each and every element in its domain to one and only one (= exactly one)
+element in its range.
+
+\hrulefill
+\begin{uexercise}\label{ex-which}
+Which of these are functions (where $y$ would be the image of $x$): `$x$ is the mother of $y$', `$x$ is a child of
+$y$', `$x$ is $y$ years old', `$x$ is the age of $y$', 
+`$x$ is the capital of $y$', `the capital of $x$ is $y$', `$x$ is the same person as $y$'?
+\end{uexercise}
+\hrulefill
+
+ \item When the domain of a function consists of tuples we omit the parentheses
+ around tuples: 
+ 
+\item[] For $f: A_1\times,\ldots,A_n \rightarrow B$,
+  instead of $f((a_1,\ldots,a_n))$ for $a_i\in A_i$, we write $f(x_1,\ldots,x_n)$.
+ 
+\item[] The objects \sysm{a_1,\ldots,a_n} are called the \uterm{arguments} of
+$f$. The object $b\in B$ that $f$ maps these arguments to is the \uterm{value} of
+$f(a_1,\ldots,a_n)$.
+
+
+\hrulefill
+\begin{uexercise}\label{ex-inverse}
+Unlike relations, the inverse of a function may not be a function. Why?
+\end{uexercise}
+\hrulefill
+
+
+\item Given two relations $Q$ and $R$,
+%where Ran($R$) = Dom($Q$), 
+the \uterm{composition} of them, $Q\circ R$ is the relation,
+\[
+\crbr{(a,c)\,|\, (a,b) \in R \text{ and } (b,c) \in Q \text{ for some } b}
+\]
+
+
+\item The composition of two functions $f:A\rightarrow B$ and $g:B\rightarrow C$,
+denoted by $g\circ f$, is a function $h:A \rightarrow C$, such that
+\[
+h(a) = g(f(a)) \text{ for each } a \in A
+\]
+
+
+\item Some special types of functions:
+
+\item[] {\bf Constant} functions:\\
+any function $f:A\rightarrow B$ such that for all $a\, \in A$, $f(a) = c$ for
+some $c\in B$.
+
+\item[] A function $f:A\rightarrow B$ is \uterm{onto} \sysm{B} (or simply onto)
+if \sysm{\mathrm{Ran}(f) = B}.
+
+\item[] A function $f:A\rightarrow B$ is \uterm{one-to-one} if for any
+\sysm{a_1,a_2 \in A}, \sysm{f(a_1) \neq f(a_2)}.\footnote{What's wrong with
+this?}
+
+\item[]A function $f:A\rightarrow B$ is a \uterm{bijection} (or
+\uterm{one-to-one correspondence}), if it is one-to-one and onto.
+
+
+\item Let's think of some examples for each type.
+
+}
+
+\begin{uexercise}\label{ex-equi}
+Every equivalence relation defines a partition on the set it is
+defined over, where each cell of the partition is called an \uterm{equivalence
+class}. Can you see how/why?
+\end{uexercise}
+
+
+% \section*{Optional Material}
+% \subsection*{Russell's Paradox}
+% 
+% Russell's paradox is a discovery made by Bertrand Russell which is of historical
+% importance for set theory and mathematics in general. The paradox is related to
+% the Axiom of Specification, which says that:
+% \begin{align}
+% \text{Given any set } A \text{ and a specification } S \text{, you can construct
+% another set }\\  B = \setcomp{x\in A}{ S \text{ holds for } x} 
+% \end{align}
+
+\appendix
+\section{Answers for selected exercises}
+
+\begin{itemize}
+\item[\ref{ex-part}] Number your trials from 0 to 49; put $n$ number of
+braces around the score of the $n$th trial. Another method is to bring together
+a trial number and its measurement into a set, but putting one of them, say the
+measurement, in another set. E.g.\ trial 10 with measurement 20 is represented
+as $\crbr{10,\crbr{20}}$. This way you can collect them into a set without
+losing any information.
+
+\item[\ref{ex-card}] 2, 0, 1, 2, 3.
+
+\item[\ref{ex-prednot}] 
+$A\cup B = \setcomp{x}{x\in A \text{ or } x \in B}$ \\
+$A\cap B = \setcomp{x}{x\in A \text{ and } x \in B} $ \\
+$A - B = \setcomp{x}{x\in A \text{ and } x \not\in B}$
+
+\item[*\ref{ex-dist}a]
+
+$A\,\alpha\, (B\, \beta\, C) = (A\,\alpha\, B) \beta\, (A\,\alpha\, C)$, for
+$\alpha, \beta \in \crbr{\cap,\cup}$ and $\alpha\neq\beta$.
+
+\item[*b] We discuss the exercise deliberately in a rather
+roundabout way to increase our familiarity with sets and logical inference. Take\\
+$A - (B\cup C) = (A-B) \cap (A-C)$\\
+if there is an $a$ in the left hand side (LHS), it must be something in $A$ but
+neither in $B$ nor $C$. The question is is $a$ guaranteed to be in the RHS as
+well? For $a$ to be in RHS it must be present in both parts of the intersection.
+Suppose it is not, then it must be missing from at least one of the parts of the
+intersection. For it to be missing in $A - B$, it must either be not in $A$ or
+it must be in $B$. Both possibilities contradict our assumption that $a$ is in
+LHS. The second way that $a$ is missing from the intersection on RHS, it must be
+missing from $A - C$. Then in this case it is either not in $A$ or it is in $C$.
+Again both possibilities clash with our initial assumption. Therefore there is
+no way that $a$ is in LHS but not in RHS; it is simply impossible. You can prove
+that $a$ must be in LHS, if it is in RHS, in a similar fashion; thereby
+finalizing the proof of the first DeMorgan's Law. The proof for the second
+would be very similar to the first one. 
+
+\item[\ref{ex-partit}a] $A$ is a proper subset of $B$ if and only if
+$A\subseteq B$ and $B\not\subseteq A$.
+\item[b] It has at least one element which is not in $B$, and
+therefore it is not the empty set.
+\item[c] $\emptyset$
+
+\item[\ref{ex-prod}a]
+$\crbr{(1,a),(1,b),(1,c),(2,a),(2,b),(2,c),(3,a),(3,b),(3,c)}$.
+\item[b] $\emptyset$.
+\item[c] A first attempt would be having $(a,b)$ equivalent to
+$\crbr{a,\crbr{b}}$. There are cases where this solution would fail. Can you see
+when? The definitive solution is to have $(a,b)$ equivalent to
+$\crbr{a,\crbr{a,b}}$.
+
+\item[\ref{ex-relprop}a] `admire' is the only non-reflexive relation; `identical'
+and `has the same hight', `has the same biological father as'  are equivalence
+relations; `has the same cousin' is reflexive, symmetric but non-transitive (why
+is it not intransitive?); `older than or at the same age as' is reflexive,
+transitive and anti-symmetric\ldots
+
+\item[\ref{ex-is}] Yes.
+
+\item[\ref{ex-which}]
+ `$x$ is $y$ years old',
+`$x$ is the capital of $y$', `the capital  of $x$ is $y$', `$x$ is the same person as $y$'.
+
+
+\item[\ref{ex-inverse}] Take the function in Exercise~\ref{ex-is} as an example.
+
+\item[*\ref{ex-equi}] Let $R\subseteq A\times A$ be an equivalence relation in
+$A$. Let $g: A \mapsto \mathcal{P}(A)$ be the function defined as $g(a) =
+\setcomp{x}{(a,x) \in R}$, for $a\in A$. We need to show that the range of $g$,
+which is some collection of sets $\mathcal{G}$, is a partition of $A$. {\bf
+First}, we need to show that $\emptyset \not\in \mathcal{G}$. Assume that
+$\emptyset \in \mathcal{G}$. Then, given the definition of $g$, there needs to
+be an $a \in A$ where there is no $b \in A$ such that $(a,b) \in R$. But given
+that $R$ is an equivalence relation, $(a,a) \in R$, providing such a $b$,
+resulting in a contradiction. Therefore  $\emptyset \not\in \mathcal{G}$. {\bf
+Second} we need to show that for $G_1, G_2 \in \mathcal{G}$, if $G_1 \neq G_2$,
+then $G_1\cap G_2 = \emptyset$. Take two such non-identical sets $G_1, G_2 \in
+\mathcal{G}$. Assume $G_1\cap G_2 \neq \emptyset$. Then there must be an $a \in
+A$ which belongs to both $G_1$ and $G_2$. Take any $b \in G_1$, given the
+definition of $g$,  that $R$ is an equivalence relation and $a\in G_1$, $(a,b),
+(b,a) \in R$; and as $a \in G_2$, $b\in G_2$ as well. Now pick any $c\in G_2$,
+by the same reasoning $c$ is also in $G_1$, establishing that $G_1 = G_2$. This
+contradicts with what we had about $G_1$ and $G_2$ in the beginning. Therefore,
+whatever two non-identical sets we pick out of $\mathcal{G}$, they are
+guaranteed to be disjoint. {\bf Finally}, we need to show that $\bigcup
+\mathcal{G} = A$. One way this fail to be true is that  there is an $a\in A$ which does
+not belong to any set in $\mathcal{G}$. This is obviously impossible, since
+given $R$ is an equivalence relation and $a\in A$, $(a,a) \in R$, and therefore
+$g(a)$ is some set in $\mathcal{G}$ such that $a \in g(a)$. As it is also
+obvious that there can be no $a \in \bigcup\mathcal{G}$ which is not present in
+$A$, we have to conclude that $\bigcup
+\mathcal{G} = A$. This finishes our proof that an equivalence relation over a
+set defines a partition of that set. Each member of this partition is called an
+equivalence class induced by the equivalence relation. 
+
+
+\end{itemize}
+
+
+\bibliographystyle{natgig}
+\bibliography{ozge}
+\end{document}
