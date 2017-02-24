@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
 
-\usepackage[nohide]{ulecnot}
+\usepackage[nohide,twocolumn]{ulecnot}
 \usepackage{natbib,unatbib}
 \pagestyle{fancy}
 \lhead{COGS 502 -- Programming and Logic}
@@ -102,14 +102,14 @@ C=\{2,\{3,4\},\text{``Mu\c s''},\{\text{``Artvin''}, \text{``France''}\}\}
 \]
 
 When you need to be more specific in your use of ``object'', you can call
-objects that are not sets \uterm{atomic} objects, and the rest
+objects that are not sets, \uterm{atomic} objects, and the rest,
 \uterm{non-atomic} objects.
 
 \hrulefill 
 \begin{uexercise}\label{ex-part} Imagine you are running an
 experiment, in which  you will obtain some measurements from trials. You run a
-trial and you obtain an integer, you run another one, you have another integer,
-for, say, 50 trials. You don't know in advance the range of possible values for
+trial and you obtain an integer, you run another one, you have another integer.
+You don't know in advance the range of possible values for
 measurements, they can be any integer. Imagine further that you need to
 accumulate measurements somewhere, so that you can sum them up, or do other
 things, after you finish experimenting.  You also want to keep which measurement
@@ -212,9 +212,10 @@ understand this fully now:
 \item[i.] 0 is a natural number (written $0\in\mathbb{N}$);
 \item[ii.] if $n\in\mathbb{N}$, then  $n+1\in\mathbb{N}$; 
 \item[iii.] If something is not a natural number according to (i) or (ii), then
-it is not a natural number.\footnote{As an exercise in logic, try to tell the
-same thing with \emph{unless}, \emph{only if}, \emph{except}, and \emph{nothing
-else}.  What other ways are there to tell it?  Do these work also in Turkish?}
+it is not a natural number.
+% \footnote{As an exercise in logic, try to tell the
+% same thing with \emph{unless}, \emph{only if}, \emph{except}, and \emph{nothing
+% else}.  What other ways are there to tell it?  Do these work also in Turkish?}
 \end{itemize}
 \end{udefinition}
 \hrulefill
@@ -671,13 +672,12 @@ class}. Can you see how/why?
 \appendix
 \section{Answers for selected exercises}
 
-\begin{itemize}
-\item[\ref{ex-part}] Number your trials from 0 to 49; put $n$ number of
-braces around the score of the $n$th trial. Another method is to bring together
-a trial number and its measurement into a set, but putting one of them, say the
-measurement, in another set. E.g.\ trial 10 with measurement 20 is represented
-as $\crbr{10,\crbr{20}}$. This way you can collect them into a set without
-losing any information.
+\begin{itemize} \item[\ref{ex-part}] Number your trials from 0 to $k$; put $n$
+number of braces around the score of the $n$th trial and put everything in a
+set. Another method is to bring together a trial number and its measurement into
+a set, but putting one of them, say the measurement, in another set. E.g.\ trial
+10 with measurement 20 is represented as $\crbr{10,\crbr{20}}$. Putting all such
+sets in another set you can collect them without losing any information.
 
 \item[\ref{ex-card}] 2, 0, 1, 2, 3.
 
