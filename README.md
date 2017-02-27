@@ -1,4 +1,4 @@
-COGS 502 - Programming and Logic - Srping 2017
+COGS 502 - Programming and Logic - Spring 2017
 -------------------------------------------------------
 
 
