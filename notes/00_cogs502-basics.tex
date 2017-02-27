@@ -48,7 +48,7 @@ A=\{\text{``Mu\c s''},\text{``Van''}\}
 \uterm{element} or \uterm{member} of $X$, symbolically,\footnote{Note that the
 case of letters is important in mathematics and programming.} 
 
-	\[
+\[
 x\in X 
 \] 
 
@@ -115,6 +115,8 @@ accumulate measurements somewhere, so that you can sum them up, or do other
 things, after you finish experimenting.  You also want to keep which measurement
 comes from which trial. For this task, you are allowed to use sets and integers,
 and nothing else.  How would you do this?  
+
+\hyperref[ex-part-sol]{\qed}
 \end{uexercise} 
 \hrulefill
 
@@ -133,18 +135,22 @@ important concepts that will come up again in the future. But for now we need
 them simply as names to call two different ways of characterizing sets. Do not
 try to memorize them.}
 
-\item Definition by intension (aka\footnote{`Also known as.'} intensional definition) is ``superior'' to
-extensional definition. The superiority comes from the fact that all the sets
-defined by extension can be defined by intension as well. However, the converse
-does not hold, namely you cannot give an extensional definition for every set
-you defined by intension.
+\item Definition by intension (aka\footnote{`Also known as.'} intensional
+definition) is ``superior'' to extensional definition. The superiority comes
+from the fact that all the sets defined by extension can be defined by intension
+as well.\footnote{Given any set $A$, there is at least one property shared by
+all the members of $A$: ``member of $A$''.} However, the converse does not
+hold, namely you cannot give an extensional definition for every set you defined
+by intension.
 
 \item[] First, there are sets where you may not identify all the elements
-belonging to it. Examples?
+belonging to it due to lack of necessary means; take, for instance,  the set of
+all the carbon based molecules in the universe, in which case it is logically
+possible, but practically impossible, to enumerate the members.
 
-\item[] Second, there are sets where you \emph{cannot} identify all the
+\item[] Second, there are sets where it is simply impossible to identify all the
 elements belonging to it, because regardless of how many elements you
-list, there will always be elements that you have left out, actually infinitely
+list, there will always remain elements left out, actually infinitely
 many of them. These are infinite sets.
 
 \item Both problems are addressed in the same way, and it is actually very
@@ -220,15 +226,40 @@ it is not a natural number.
 \end{udefinition}
 \hrulefill
 
+
+\hrulefill
+\begin{uexercise} \label{ex-pred}
+Express in predicate notation,
+\begin{enumerate}
+\item the set of all numbers that can be obtained by multiplying an even
+number with 4.5 and adding to it an odd number multiplied by 2.8. 
+\item the set of 8 digit numbers that can be read as legitimate dates in
+\mbox{\texttt{DDMMYYYY}} format. An illegitimate date is 99032017.
+\item the set of expressions that can be read as a time specification in 24
+hour format; e.g.\ 10:30, 21:40, but not 34:01, 12:72 etc.
+\end{enumerate}
+
+\hyperref[ex-pred-sol]{\qed}
+\end{uexercise}
+
+\begin{uexercise} \label{ex-pred2}
+Given $A = \crbr{1,2,3,4}$, list the members of the set
+\[
+B=\setcomp{x+y}{x,y\in A \text{ and } x-y \geq 2}
+\]
+
+\hyperlink{ex-pred2-sol}{\qed}
+\end{uexercise}
+\hrulefill
 \end{itemize}
 
 \ezimeti{
-\item For any set $A$, the number of elements in it is called the
-\uterm{cardinality} of $A$, depicted as $|A|$.
+\item For any set $A$, the \uterm{cardinality} of $A$, depicted as $|A|$, stands
+for the number of elements in $A$.
 
 \hrulefill
 \begin{uexercise}\label{ex-card}
-What is the cardinality of the following sets:
+State the cardinality of the following sets:
 \begin{itemize}
 \item[a.]$\{1,\{2,\{3,\{4\}\}\}\}$
 \item[b.]$\emptyset$
@@ -236,6 +267,8 @@ What is the cardinality of the following sets:
 \item[d.]$\{\emptyset,1\}$
 \item[e.]$\{\emptyset,0,1\}$
 \end{itemize}
+
+\hyperlink{ex-card-sol}{\qed}
 \end{uexercise}
 \hrulefill
 }
@@ -268,9 +301,15 @@ place of city names.
 \item[] For any sets $A$ and $B$, \\ $A$ is a \uterm{proper subset} of $B$, written $A \subset B$, if and only if each element in $A$ is also in $B$ and
 there is at least one $a \in B$, such that $a \notin A$.
 
-\item Given any set $A$, is $A\subseteq A$?
+\item Given any set $A$, is $A\subseteq A$?\footnote{Of course; how else could
+it be?}
 
-\item Given any set $A$, what can you say about $\emptyset \subseteq A$?
+\item Given any set $A$, what can you say about $\emptyset \subseteq
+A$?\footnote{We can be confident that the statement is true. If it were not,
+then there would have been an element belonging in the empty set without
+belonging in $A$, which is impossible, given the empty set is empty. In
+mathematics, if a statement cannot be true, it must be false, and vice versa; no
+third way.}
 
 \item Given the notion of equality and subsethood, can you see why the following
 holds?
@@ -278,7 +317,50 @@ holds?
 \item[] For any sets $A$ and $B$, \\ $A$ is \uterm{equal} to $B$, written $A
 = B$, if and only if $A \subseteq B$ and $B \subseteq A$.
 
+\hrulefill
+\begin{uexercise}\label{truefalse1}
+
+State whether true or false:\footnote{(\ref{e1}--\ref{e6}) are
+from  \cite[p.\ 8]{lewispapadimitriou98}.}
+
+\begin{enumerate}
+\item\label{e1} $\emptyset \in \{\emptyset\}$
+
+\item\label{e2} $\emptyset \subseteq \{\emptyset\}$
+
+\item\label{e3}  $\emptyset \subseteq \emptyset$
+
+\item\label{e4} $\emptyset \in \emptyset$
+
+\item\label{e5} $\crbr{2,4} \subseteq \crbr{2,4,\crbr{2,4}}$
+
+\item\label{e6} $\crbr{2,4} \in \crbr{2,4,\crbr{2,4}}$
+
+\item\label{f1}
+$\crbr{a} \subseteq \crbr{\crbr{a}}$
+\item \label{f2}
+$\emptyset \notin \crbr{a,b,c}$
+\item \label{f3}
+$\crbr{\emptyset} \subseteq \crbr{a,b,c}$
+\item\label{f5}
+Given any set $A$, $\emptyset \subset A$.
+\end{enumerate}
+ 
+\hyperlink{truefalse1-sol}{\qed}
+\end{uexercise}
+
+\begin{uexercise}\label{ex-aina}
+
+Give a set $A$ such that there exists an $a$ where both $a \in A$ and
+$a\subseteq A$.
+
+\hyperlink{ex-aina-sol}{\qed}
+\end{uexercise}
+
+\hrulefill
 }
+
+
 
 \ezimeti{
 \item[] {\bf Set operations:}
@@ -301,7 +383,9 @@ holds?
 
 \hrulefill
 \begin{uexercise} \label{ex-prednot}
-	Define $A\cup B$,\  $A\cap B$ and $A - B$ in predicate notation.
+Define $A\cup B$,\  $A\cap B$ and $A - B$ in predicate notation.
+
+\hyperlink{ex-prednot-sol}{\qed}
 \end{uexercise}
 \hrulefill
 
@@ -336,25 +420,52 @@ had above. Do not try to memorize anything -- except perhaps some names -- in
 this course, it is not the right way to
 learn mathematics.  
 
-
-\hrulefill
-\begin{uexercise}
-\begin{itemize}
-\item[]
-\item[*a.]\label{ex-dist} Write the distributivity property by using variables over set operations.
-\item[*b.]\label{ex-demorg} Show that DeMorgan's Laws hold.  Concentrate on what is required for
-two sets to be equal.
-\end{itemize}
-\end{uexercise}
-\hrulefill
-
-
 \item It is possible to take the union or intersection of more than two sets. Given a set of sets $A$:
 \begin{align*}
 	\bigcup A = \crbr{a\, |\, a \in B\text{ for some }B \in A}\\
 	\bigcap A = \crbr{a\, |\, a \in B\text{ for each }B \in A}
 \end{align*}
 
+\hrulefill
+
+\begin{uexercise}\label{ex-bigOp}
+State whether true or false:
+\begin{enumerate}
+
+\item\label{ex-bigOp-x}
+$A - (A \cap B) = A - B$
+\item\label{ex-bigOp-y}
+$\crbr{a,b,\crbr{a,b}} - \crbr{a,b} = \crbr{a,b}$
+
+\item\label{ex-bigOp-a} If $\bigcap X = \emptyset$, then there exists $x,y\in X$ such that $x\cap
+y = \emptyset$.
+\item\label{ex-bigOp-b} If there exists $x,y\in X$ such that $x\cap
+y = \emptyset$, then $\bigcap X = \emptyset$.
+\end{enumerate}
+
+\hyperlink{ex-bigOp-sol}{\qed}
+\end{uexercise}
+
+\begin{uexercise}\label{ex-tsubs}
+For any set $A$, what is the union of all the subsets of $A$  two
+elements?
+
+\hyperlink{ex-tsubs-sol}{\qed}
+\end{uexercise}
+
+\begin{uexercise}[*] \label{ex-dist} 
+Define distributivity by using variables over set operations.
+
+\hyperlink{ex-dist-sol}{\qed}
+\end{uexercise}
+
+\begin{uexercise}[*] \label{ex-demorg} 
+Show that DeMorgan's Laws hold.  Concentrate on what is required for
+two sets to be equal.
+
+\hyperlink{ex-demorg-sol}{\qed}
+\end{uexercise}
+\hrulefill
 }
 
 \subsection{Power set and partition}
@@ -375,15 +486,60 @@ $\mathcal{P}(A)$, or $\mathrm{Pow}(A)$, is the set of all subsets of $A$.
 \item[ii.] any two distinct members of $\Pi$ are disjoint; 
 \item[iii.] $\bigcup \Pi = A$.
 }
+
 \hrulefill
-\begin{uexercise}
-\label{ex-partit}
+\begin{uexercise}\label{ex-partit}
+State whether true or false:\footnote{(\ref{e7}--\ref{e10}) are
+from  \cite[p.\ 8]{lewispapadimitriou98}, (\ref{e11}) is from
+\cite[p.\ 34]{nesinSKK}.}
+
 \begin{enumerate}
-\item[]
-\item[a.] Define proper subsethood in terms of '$\subseteq$', you can negate it as '$\not\subseteq$' if you need to. 
-\item[b.] Given $A \not\subseteq B$, what can you tell about $A$?
-\item[c.] Give a partition of $A = \emptyset$.
-\end{enumerate} \end{uexercise} \hrulefill
+
+\item\label{ex-partit-x} 
+$\crbr{\crbr{a,\crbr{b}},\crbr{c,d}}$ is not a partition of $\crbr{a,\crbr{b},c,d}$
+
+\item\label{e7} $\crbr{2,4} \subseteq \mathcal{P}(\crbr{2,4,\crbr{2,4}})$ \hfill 
+	
+\item\label{e8} $\crbr{2,4} \in \mathcal{P}(\crbr{2,4,\crbr{2,4}})$ 
+
+\item\label{e9} $\crbr{\crbr{2,4}}\in \mathcal{P}(\crbr{2,4,\crbr{2,4}})$ 
+
+\item\label{e10} $\crbr{\crbr{2,4}}\subseteq \mathcal{P}(\crbr{2,4,\crbr{2,4}})$ 
+
+\item\label{e11} If $a,b \in A$, then $\crbr{\crbr{a},\crbr{a,b}}\in
+\mathcal{P}(\mathcal{P}(A))$ 
+
+\end{enumerate}
+
+\hyperlink{ex-partit-sol}{\qed}
+\end{uexercise} 
+
+\begin{uexercise}\label{ex-empow}
+What is the power set of $\crbr{\emptyset,\crbr{\emptyset}}$?
+
+\hyperlink{ex-empow-sol}{\qed}
+\end{uexercise}
+
+\begin{uexercise}\label{ex-tpart}
+Let $A=\crbr{a,b,c,d}$; give all the partitions of $A$ whose members has
+\emph{at most} 2 members.
+
+\hyperlink{ex-tpart-sol}{\qed}
+\end{uexercise}
+
+\begin{uexercise}\label{ex-part-pred}
+Write the following sets in predicate notation:
+\begin{enumerate}
+\item\label{ex-part-pred-a}
+The power set of a given set.
+\item\label{ex-part-pred-b}
+The subsets of a given set with less then three elements.
+\end{enumerate}
+
+\hyperlink{ex-part-pred-sol}{\qed}
+\end{uexercise}
+
+\hrulefill
 }
 
 
@@ -669,29 +825,75 @@ class}. Can you see how/why?
 % another set }\\  B = \setcomp{x\in A}{ S \text{ holds for } x} 
 % \end{align}
 
+\newpage
 \appendix
 \section{Answers for selected exercises}
 
-\begin{itemize} \item[\ref{ex-part}] Number your trials from 0 to $k$; put $n$
+\begin{enumerate} 
+
+\item[\ref{ex-part}]\label{ex-part-sol} Number your trials from 0 to $k$; put $n$
 number of braces around the score of the $n$th trial and put everything in a
 set. Another method is to bring together a trial number and its measurement into
 a set, but putting one of them, say the measurement, in another set. E.g.\ trial
 10 with measurement 20 is represented as $\crbr{10,\crbr{20}}$. Putting all such
 sets in another set you can collect them without losing any information.
 
-\item[\ref{ex-card}] 2, 0, 1, 2, 3.
+\item[\ref{ex-pred2}]\hypertarget{ex-pred2-sol}{} $B = \crbr{4,5,6}$ 
 
-\item[\ref{ex-prednot}] 
+\item[\ref{ex-card}]\hypertarget{ex-card-sol}{} 2, 0, 1, 2, 3.
+
+\item[\ref{truefalse1}]\hypertarget{truefalse1-sol}{}
+
+\ref{e1}: T, 
+\ref{e2}: T, 
+\ref{e3}: T, 
+\ref{e4}: F, 
+\ref{e5}: T, 
+\ref{e6}: T, 
+\ref{f1}: F, 
+\ref{f2}: T, 
+\ref{f3}: F, 
+\ref{f5}: F (when $A=\emptyset$)
+
+\item[\ref{ex-aina}]\hypertarget{ex-aina-sol}{}
+
+$A=\{ \emptyset\}$, $a=\emptyset$, or anything like $A=\{x,\{ x\}\}$, $a=\{ x\}$.
+
+\item[\ref{ex-prednot}]\hypertarget{ex-prednot-sol} 
 $A\cup B = \setcomp{x}{x\in A \text{ or } x \in B}$ \\
 $A\cap B = \setcomp{x}{x\in A \text{ and } x \in B} $ \\
 $A - B = \setcomp{x}{x\in A \text{ and } x \not\in B}$
 
-\item[*\ref{ex-dist}a]
+
+\item[\ref{ex-bigOp}]\hypertarget{ex-bigOp-sol}{}
+
+\ref{ex-bigOp-x}: True 
+
+\ref{ex-bigOp-y}: False 
+
+\ref{ex-bigOp-a}. False; every pair of sets in $X$ may have something in common,
+without there being any element that is common to all the sets in $X$. For
+instance, take $X=\crbr{\crbr{a,b},\crbr{b,c},\crbr{a,c}}$.
+
+\ref{ex-bigOp-b}.
+True. Assume that it is false; which means there are $x,y\in X$ and
+$x\cap y = \emptyset$, and $\bigcap X \neq \emptyset$; then there is a $z \in
+\bigcap X$; then this $z$  must be both in $x$ and $y$, and therefore it must be
+in $x\cap y$. But we started by saying that $x\cap y = \emptyset$. Therefore
+there is no way that the statement be false, it must be true.
+
+\item[\ref{ex-tsubs}]\hypertarget{ex-tsubs-sol}{}
+
+If $A$ has less then 2 elements, the union is $\emptyset$, otherwise the union
+is $A$.
+
+\item[\ref{ex-dist}]\hypertarget{ex-dist-sol}{}
 
 $A\,\alpha\, (B\, \beta\, C) = (A\,\alpha\, B) \beta\, (A\,\alpha\, C)$, for
 $\alpha, \beta \in \crbr{\cap,\cup}$ and $\alpha\neq\beta$.
 
-\item[*b] We discuss the exercise deliberately in a rather
+\item[\ref{ex-demorg}]\hypertarget{ex-demorg-sol}{}
+We discuss the exercise deliberately in a rather
 roundabout way to increase our familiarity with sets and logical inference. Take\\
 $A - (B\cup C) = (A-B) \cap (A-C)$\\
 if there is an $a$ in the left hand side (LHS), it must be something in $A$ but
@@ -708,11 +910,68 @@ that $a$ must be in LHS, if it is in RHS, in a similar fashion; thereby
 finalizing the proof of the first DeMorgan's Law. The proof for the second
 would be very similar to the first one. 
 
-\item[\ref{ex-partit}a] $A$ is a proper subset of $B$ if and only if
-$A\subseteq B$ and $B\not\subseteq A$.
-\item[b] It has at least one element which is not in $B$, and
-therefore it is not the empty set.
-\item[c] $\emptyset$
+\item[\ref{ex-partit}]\hypertarget{ex-partit-sol}{}
+\ref{ex-partit-x}: F,
+\ref{e7}: F, 
+\ref{e8}: T, 
+\ref{e9}: T, 
+\ref{e10}: T 
+
+
+\item[\ref{ex-empow}]\hypertarget{ex-empow-sol}{}
+
+$\crbr{\emptyset,
+\crbr{\emptyset},
+\crbr{\crbr{\emptyset}},
+\crbr{\emptyset,\crbr{\emptyset}}}$
+
+
+\item[\ref{ex-tpart}]\hypertarget{ex-tpart-sol}{}
+
+To better keep track of things, let us distinguish three cases:
+
+Case 1: Partitions with no member with more than one member. There is only one
+such partition:
+
+\begin{itemize}
+
+\item[] $\crbr{\crbr{a},\crbr{b},\crbr{c},\crbr{d}}$
+
+\end{itemize}
+
+Case 2: Partitions with only one member with two members. In this case there are
+as many partitions as there are distinct ways of picking 2 members from $A$,
+without caring for in which order you pick the members. There are 6 distinct
+ways for doing this. (It is OK if you cannot find this number without explicitly
+counting the possibilities.) The partitions are:
+
+\begin{itemize}
+\item[] $\crbr{\crbr{a,b},\crbr{c},\crbr{d}}$
+\item[] $\crbr{\crbr{a,c},\crbr{b},\crbr{d}}$
+\item[] $\crbr{\crbr{a,d},\crbr{b},\crbr{c}}$
+\item[] $\crbr{\crbr{b,c},\crbr{a},\crbr{d}}$
+\item[] $\crbr{\crbr{b,d},\crbr{a},\crbr{c}}$
+\item[] $\crbr{\crbr{c,d},\crbr{a},\crbr{b}}$
+\end{itemize}
+
+Case 3: Partitions with two members with two members. This case is not much
+different from Case 2. The number of possibilities is the same. You simply put
+together the sets with one members: 
+
+\begin{itemize}
+\item[] $\crbr{\crbr{a,b},\crbr{c,d}}$
+\item[] $\crbr{\crbr{a,c},\crbr{b,d}}$
+\item[] $\crbr{\crbr{a,d},\crbr{b,c}}$
+\item[] $\crbr{\crbr{b,c},\crbr{a,d}}$
+\item[] $\crbr{\crbr{b,d},\crbr{a,c}}$
+\item[] $\crbr{\crbr{c,d},\crbr{a,b}}$
+\end{itemize}
+
+\item[\ref{ex-part-pred}]\hypertarget{ex-part-pred-sol}{}
+
+\ref{ex-part-pred-a}. \sysm{\mathrm{Pow}(A) = \crbr{X\, |\, X \subseteq A}}
+
+\ref{ex-part-pred-a}. Given $A$, \sysm{\crbr{X\, |\, X \subseteq A\, \mathrm{ and }\, |X| < 3}}
 
 \item[\ref{ex-prod}a]
 $\crbr{(1,a),(1,b),(1,c),(2,a),(2,b),(2,c),(3,a),(3,b),(3,c)}$.
@@ -766,10 +1025,9 @@ $A$, we have to conclude that $\bigcup
 set defines a partition of that set. Each member of this partition is called an
 equivalence class induced by the equivalence relation. 
 
+\end{enumerate}
 
-\end{itemize}
 
-
-\bibliographystyle{natgig}
+\bibliographystyle{plain}
 \bibliography{ozge}
 \end{document}
