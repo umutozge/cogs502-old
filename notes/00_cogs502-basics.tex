@@ -243,11 +243,12 @@ hour format; e.g.\ 10:30, 21:40, but not 34:01, 12:72 etc.
 \end{uexercise}
 
 \begin{uexercise} \label{ex-pred2}
-Given $A = \crbr{1,2,3,4}$, list the members of the set
-\[
-B=\setcomp{x+y}{x,y\in A \text{ and } x-y \geq 2}
-\]
-
+Given $A = \crbr{1,2,3,4}$, list the members of the sets:
+\begin{enumerate}
+\item\label{ex-pred2-a} $\setcomp{x+y}{x,y\in A \text{ and } x-y \geq 2}$
+\item\label{ex-pred2-b} $\setcomp{x+y}{x,y\in A \text{ and } x.y \geq 6}$\footnote{`.' means
+multiplication.}
+\end{enumerate}
 \hyperlink{ex-pred2-sol}{\qed}
 \end{uexercise}
 \hrulefill
@@ -838,7 +839,9 @@ a set, but putting one of them, say the measurement, in another set. E.g.\ trial
 10 with measurement 20 is represented as $\crbr{10,\crbr{20}}$. Putting all such
 sets in another set you can collect them without losing any information.
 
-\item[\ref{ex-pred2}]\hypertarget{ex-pred2-sol}{} $B = \crbr{4,5,6}$ 
+\item[\ref{ex-pred2}]\hypertarget{ex-pred2-sol}{} 
+\ref{ex-pred2-a}: $\crbr{4,5,6}$ 
+\ref{ex-pred2-b}: $\crbr{5,6,7,8}$ 
 
 \item[\ref{ex-card}]\hypertarget{ex-card-sol}{} 2, 0, 1, 2, 3.
 
@@ -867,9 +870,9 @@ $A - B = \setcomp{x}{x\in A \text{ and } x \not\in B}$
 
 \item[\ref{ex-bigOp}]\hypertarget{ex-bigOp-sol}{}
 
-\ref{ex-bigOp-x}: True 
+\ref{ex-bigOp-x}. True 
 
-\ref{ex-bigOp-y}: False 
+\ref{ex-bigOp-y}. False 
 
 \ref{ex-bigOp-a}. False; every pair of sets in $X$ may have something in common,
 without there being any element that is common to all the sets in $X$. For
@@ -962,9 +965,6 @@ together the sets with one members:
 \item[] $\crbr{\crbr{a,b},\crbr{c,d}}$
 \item[] $\crbr{\crbr{a,c},\crbr{b,d}}$
 \item[] $\crbr{\crbr{a,d},\crbr{b,c}}$
-\item[] $\crbr{\crbr{b,c},\crbr{a,d}}$
-\item[] $\crbr{\crbr{b,d},\crbr{a,c}}$
-\item[] $\crbr{\crbr{c,d},\crbr{a,b}}$
 \end{itemize}
 
 \item[\ref{ex-part-pred}]\hypertarget{ex-part-pred-sol}{}
