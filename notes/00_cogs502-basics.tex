@@ -21,11 +21,9 @@
 
 \item A fundamental activity in science is to characterize classes\footnote{We
 use ``class'' in a non-technical, non-set-theoretic sense.} of objects.
-Physics: body, electrical charge, spin; 
-Biology: living cell, protein folding; 
-Sociology: identity, social class; 
-all these are classes of concrete or abstract objects.
-Any examples from Cognitive Science?
+Physics: body, electrical charge, spin; Biology: living cell, protein folding;
+Sociology: identity, social class; all these are classes of concrete or abstract
+objects.  Any examples from Cognitive Science?
 
 \item The mathematical construct \uterm{set} provides the clearest model of this
 activity.
@@ -116,7 +114,7 @@ things, after you finish experimenting.  You also want to keep which measurement
 comes from which trial. For this task, you are allowed to use sets and integers,
 and nothing else.  How would you do this?  
 
-\hyperref[ex-part-sol]{\qed}
+\hyperlink[ex-part-sol]{\qed}
 \end{uexercise} 
 \hrulefill
 
@@ -228,18 +226,17 @@ it is not a natural number.
 
 
 \hrulefill
-\begin{uexercise} \label{ex-pred}
+\begin{uexercise} \label{expred}
 Express in predicate notation,
 \begin{enumerate}
-\item the set of all numbers that can be obtained by multiplying an even
+\item\label{expreda} the set of all numbers that can be obtained by multiplying an even
 number with 4.5 and adding to it an odd number multiplied by 2.8. 
-\item the set of 8 digit numbers that can be read as legitimate dates in
+\item\label{expredb} the set of 8 digit numbers that can be read as legitimate dates in
 \mbox{\texttt{DDMMYYYY}} format. An illegitimate date is 99032017.
-\item the set of expressions that can be read as a time specification in 24
+\item\label{expredc} the set of expressions that can be read as a time specification in 24
 hour format; e.g.\ 10:30, 21:40, but not 34:01, 12:72 etc.
 \end{enumerate}
-
-\hyperref[ex-pred-sol]{\qed}
+\hyperlink{expredsol}{\qed}
 \end{uexercise}
 
 \begin{uexercise} \label{ex-pred2}
@@ -251,6 +248,19 @@ multiplication.}
 \end{enumerate}
 \hyperlink{ex-pred2-sol}{\qed}
 \end{uexercise}
+
+\begin{uexercise}\label{exfrown}
+Let us define an operator `$\frown$' as follows:
+
+For any sets $A$ and $B$, $A\frown B = \setcomp{2x + 3y}{x\in A\text{ and }y\in B}$
+
+\begin{enumerate}
+\item\label{exfrowna} Give $A\frown B$, for $A= \crbr{1,2,3}$ and $B=\crbr{4,5}$.
+\item\label{exfrownb} Give $A\frown B$, for $A= \emptyset$ and $B=\crbr{4,5}$.
+\end{enumerate}
+\hyperlink{exfrownsol}{\qed}
+\end{uexercise}
+
 \hrulefill
 \end{itemize}
 
@@ -268,7 +278,6 @@ State the cardinality of the following sets:
 \item[d.]$\{\emptyset,1\}$
 \item[e.]$\{\emptyset,0,1\}$
 \end{itemize}
-
 \hyperlink{ex-card-sol}{\qed}
 \end{uexercise}
 \hrulefill
@@ -314,7 +323,7 @@ third way.}
 
 \item Given the notion of equality and subsethood, can you see why the following
 holds?
-
+	
 \item[] For any sets $A$ and $B$, \\ $A$ is \uterm{equal} to $B$, written $A
 = B$, if and only if $A \subseteq B$ and $B \subseteq A$.
 
@@ -448,7 +457,7 @@ y = \emptyset$, then $\bigcap X = \emptyset$.
 \end{uexercise}
 
 \begin{uexercise}\label{ex-tsubs}
-For any set $A$, what is the union of all the subsets of $A$  two
+For any set $A$, what is the union of all the subsets of $A$  with two
 elements?
 
 \hyperlink{ex-tsubs-sol}{\qed}
@@ -590,15 +599,19 @@ A_1 \times A_2 \times\ldots\times A_n = \crbr{(a_1,a_2,\ldots,a_n) | a_i \in A_i
 
 \hrulefill
 \begin{uexercise}\label{ex-prod}
-\ezimeti{
-\item[]
-\item[a.]Give the product of $\crbr{1,2,3}$ and $\crbr{a,b,c}$.
-\item[b.]Give the product of $\crbr{a,b,c}$ and $\emptyset$.
-\item[*c.] Think of a way to represent ordered pairs as sets.
-}
+Give the product of
+\begin{enumerate}
+\item\label{ex-prod-a} $\crbr{1,2,3}$ and $\crbr{a,b,c}$.
+\item\label{ex-prod-b} $\crbr{a,b,c}$ and $\emptyset$.
+\end{enumerate}
+\hyperlink{ex-pred-sol}{\qed}
+\end{uexercise}
+
+\begin{uexercise}[*]\label{exrepres}
+ Think of a way to represent ordered pairs as sets.
+\hyperlink{exrepressol}{\qed}
 \end{uexercise}
 \hrulefill
-
 
 \item A \uterm{binary relation} on sets $A$ and $B$ is a subset of $A \times B$.  
 
@@ -638,7 +651,7 @@ R^{-1}=\crbr{(b,a)\,|\, (a,b) \in R}
 
 \subsection{Some properties of binary relations}
 \ezimeti{
-\item Certain types of relations are of special interest due to way they are
+\item Certain types of relations are of special interest due to the way they are
 structured.
 
 \item Let's focus on binary relations on a single set, $R\subseteq A\times A$.
@@ -693,19 +706,22 @@ is reflexive, symmetric and transitive.
 
 \hrulefill
 \begin{uexercise}\label{ex-relprop}
-\ezimeti{
-\item[]
-\item[a.] State the properties of the following relations defined over set of
+State the properties of the following relations defined over set of
 humans: `spouse', `ancestor', `sister', `sibling', `father', `child', `admire',
 `identical', `older than', `older than or at the same age as', `has the same hight as', `has the same biological
 father', `has the same cousin'.
-\item[b.] 
+
+\hyperlink{ex-relprop-sol}{\qed}
+\end{uexercise}
+
+\begin{uexercise}
 Give other examples for each type of relation from $\mathbb{N}^2$ and/or
 $H^2$, where $H$ is the set of humans.
-}
 \end{uexercise}
+
 \hrulefill
 }
+
 \section{Functions}
 
 \ezimeti{
@@ -719,6 +735,8 @@ the first component.
 \begin{uexercise}\label{ex-is}
 Is $\crbr{(a,\crbr{a}),(b,\crbr{a}),(c,c)}$  a function 
 from $\crbr{a,b,c}$ to $\crbr{\crbr{a},\crbr{b},c}$?
+
+\hyperlink{ex-is-sol}{\qed}
 \end{uexercise}
 \hrulefill
 
@@ -786,6 +804,53 @@ denoted by $g\circ f$, is a function $h:A \rightarrow C$, such that
 h(a) = g(f(a)) \text{ for each } a \in A
 \]
 
+\hrulefill
+\begin{uexercise}\label{exfunclist}
+ Let $A = \crbr{p,q,r}$ and $B = \crbr{0,1}$. List all the possible
+functions $f: A \mapsto B$. Represent each function as a set of ordered pairs.
+
+\hyperlink{exfunclistsol}{\qed}
+\end{uexercise}
+
+\begin{uexercise}\label{excompfunc}
+Let $R=\crbr{(a,b),(a,c),(c,d),(a,a),(b,a)}$. What is the composition $R\circ
+R$? What is $R^{-1}$? Is $R$, $R\circ R$ or $R^{-1}$ a function?
+
+\hyperlink{excompfuncsol}{\qed}
+\end{uexercise}
+
+
+\begin{uexercise}\label{exhumans}
+ Let $R$ be a binary relation defined over the set of humans, dead or alive, $H$
+(therefore $R\subseteq H\times H$), such that for any two human beings $x,y \in
+H$, $(x,y) \in R$ if and only if $x$ is a child of $y$. For this question,
+assume that each human being except two, say Adam and Eve, is a child of a
+couple of parents.
+
+\begin{enumerate}
+\item\label{exhumansa} State the domain and  the range of $R$. 
+\item\label{exhumansb}
+What is the relation $R^{-1}$? Describe it in words. What is it's domain, what
+is it's range?
+\item\label{exhumansc}  What about $R^{-1} \circ R$?
+\item\label{exhumansd} $R\circ R^{-1} $?
+\end{enumerate}
+
+\hyperlink{exhumanssol}{\qed}
+\end{uexercise}
+
+\begin{uexercise}\label{exrussell}
+State whether the following proposition is true or
+not:\footnote{Russell, IMF, 34.}
+\begin{itemize}
+\item[] If a relation is irreflexive, transitive and connected, then it is
+asymmetric.
+\end{itemize}
+\hyperlink{exrussellsol}{\qed}
+\end{uexercise}
+
+
+\hrulefill
 
 \item Some special types of functions:
 
@@ -806,14 +871,12 @@ this?}
 
 \item Let's think of some examples for each type.
 
-}
-
-\begin{uexercise}\label{ex-equi}
+\begin{uexercise}[*]\label{ex-equi}
 Every equivalence relation defines a partition on the set it is
 defined over, where each cell of the partition is called an \uterm{equivalence
 class}. Can you see how/why?
 \end{uexercise}
-
+}
 
 % \section*{Optional Material}
 % \subsection*{Russell's Paradox}
@@ -832,16 +895,35 @@ class}. Can you see how/why?
 
 \begin{enumerate} 
 
-\item[\ref{ex-part}]\label{ex-part-sol} Number your trials from 0 to $k$; put $n$
+\item[\ref{ex-part}]\hypertarget{ex-part-sol}{} 
+Number your trials from 0 to $k$; put $n$
 number of braces around the score of the $n$th trial and put everything in a
 set. Another method is to bring together a trial number and its measurement into
 a set, but putting one of them, say the measurement, in another set. E.g.\ trial
 10 with measurement 20 is represented as $\crbr{10,\crbr{20}}$. Putting all such
 sets in another set you can collect them without losing any information.
 
+\item[\ref{expred}]\hypertarget{expredsol}{}
+\ref{expreda} $\setcomp{4.5x+2.8y}{x,y \in \mathbb{Z}, x \text{ is
+even, } y \text{ is odd} }$
+
+\ref{expredb} $\setcomp{xyzstuvw}{x\in
+\crbr{0,1,2,3},\,y\in \crbr{0,\ldots,9},\, x+y > 0,\, 10.x+y <32,\, z\in\crbr{0,1},\,
+s\in\crbr{0,\ldots,9},\, z+s > 0,\, 10.z+s<13,\, t,u,v,w \in \crbr{0,\ldots,9}}$,
+where $ab$ designates ``$a$ concatenated to $b$'', rather than multiplication.
+
+\ref{expredc}$\setcomp{xy:vw}{x \in \crbr{0,1,2}, y\in{0,\ldots,9}, 10x+y < 24, v \in
+\crbr{0,\ldots,5}, w\in \crbr{0,\ldots,9}}$,
+where $ab$ designates ``$a$ concatenated to $b$'', rather than multiplication.
+
 \item[\ref{ex-pred2}]\hypertarget{ex-pred2-sol}{} 
 \ref{ex-pred2-a}: $\crbr{4,5,6}$ 
 \ref{ex-pred2-b}: $\crbr{5,6,7,8}$ 
+
+\item[\ref{exfrown}]\hypertarget{exfrownsol}{}
+\ref{exfrowna} $\crbr{14,16,17,18,19,21}$	
+
+\ref{exfrownb} $\emptyset$
 
 \item[\ref{ex-card}]\hypertarget{ex-card-sol}{} 2, 0, 1, 2, 3.
 
@@ -971,23 +1053,25 @@ together the sets with one members:
 
 \ref{ex-part-pred-a}. \sysm{\mathrm{Pow}(A) = \crbr{X\, |\, X \subseteq A}}
 
-\ref{ex-part-pred-a}. Given $A$, \sysm{\crbr{X\, |\, X \subseteq A\, \mathrm{ and }\, |X| < 3}}
+\ref{ex-part-pred-b}. Given $A$, \sysm{\crbr{X\, |\, X \subseteq A\, \mathrm{ and }\, |X| < 3}}
 
-\item[\ref{ex-prod}a]
-$\crbr{(1,a),(1,b),(1,c),(2,a),(2,b),(2,c),(3,a),(3,b),(3,c)}$.
-\item[b] $\emptyset$.
-\item[c] A first attempt would be having $(a,b)$ equivalent to
+\item[\ref{ex-prod}]\hypertarget{ex-prod-sol}{}
+\ref{ex-prod-a} $\crbr{(1,a),(1,b),(1,c),(2,a),(2,b),(2,c),(3,a),(3,b),(3,c)}$.
+\ref{ex-prod-b} $\emptyset$.
+
+\item[\ref{exrepres}]\hypertarget{exrepressol}{} 
+A first attempt would be having $(a,b)$ equivalent to
 $\crbr{a,\crbr{b}}$. There are cases where this solution would fail. Can you see
 when? The definitive solution is to have $(a,b)$ equivalent to
 $\crbr{a,\crbr{a,b}}$.
 
-\item[\ref{ex-relprop}a] `admire' is the only non-reflexive relation; `identical'
+\item[\ref{ex-relprop}]\hypertarget{ex-relprop-sol}{} `admire' is the only non-reflexive relation; `identical'
 and `has the same hight', `has the same biological father as'  are equivalence
 relations; `has the same cousin' is reflexive, symmetric but non-transitive (why
 is it not intransitive?); `older than or at the same age as' is reflexive,
 transitive and anti-symmetric\ldots
 
-\item[\ref{ex-is}] Yes.
+\item[\ref{ex-is}]\hypertarget{ex-is-sol}{} Yes.
 
 \item[\ref{ex-which}]
  `$x$ is $y$ years old',
@@ -995,6 +1079,52 @@ transitive and anti-symmetric\ldots
 
 
 \item[\ref{ex-inverse}] Take the function in Exercise~\ref{ex-is} as an example.
+
+\item[\ref{exfunclist}]\hypertarget{exfunclistsol}{}
+There are 8 functions in total.
+
+\item[\ref{excompfunc}]\hypertarget{excompfuncsol}{}
+
+$R\circ R = \crbr{(a,a),(a,d),(a,b),(a,c),(b,b),(b,c),(b,a)}$
+
+	$R^{-1} = \crbr{(b,a),(c,a),(d,c),(a,a),(a,b)}$
+
+None of them is a function.
+
+\item[\ref{exhumans}]\hypertarget{exhumanssol}{}
+\ref{exhumansa} The domain of $R$ is $H$ - $\crbr{\text{Adam},\text{Eve}}$. The range is the set
+of all human parents; human beings without any child are 
+out of the range of $R$.
+
+\ref{exhumansb} $R^{-1}$ is the relation that holds between a parent and his/her child. It's
+domain is parents, it's range is $H$ - $\crbr{\text{Adam},\text{Eve}}$.
+
+\ref{exhumansc} The domain of $R^{-1} \circ R$ is the same as that of $R$, $H -
+\crbr{Adam,Eve}$, it's range is the same as that of $R^{-1}$, $H$ -
+$\crbr{\text{Adam},\text{Eve}}$. It's the relation that relates each human being
+to him/herself and his/her siblings, including siblings-in-law, i.e.\ people who
+share at least one parent.
+
+\ref{exhumansd} Both the domain and the range is the set of parents. The relation pairs parents
+with themselves and parents with which they share at least one child, including
+children-in-law. 
+
+\item[\ref{exrussell}]\hypertarget{exrussellsol}{}
+The proposition is true. Take any $R$ over $A\times A$  that is irreflexive,
+transitive and connected. We want to show that it is asymmetric. For the sake of
+argument, assume that $R$ is not asymmetric. What does it mean NOT to be
+asymmetric? First recall what asymmetry is:
+
+\begin{itemize}
+\item[] A relation $R\subseteq A\times A$ is \textbf{asymmetric}  if and only if
+for each $(x,y) \in R$, $(y,x)$ is not in $R$.
+\end{itemize}
+
+For $R$ to fail to be asymmetric, there needs to be $a,b \in A$ such that
+$(a,b), (b,a) \in R$. If $(a,b),(b,a)\in R$, then $(a,a)\in R$, since $R$ is
+transitive. But if $(a,a)\in R$, then $R$ cannot be irreflexive, which
+contradicts the given fact that $R$ is irreflexive. As taking $R$ not to be
+asymmetric leads to a contradiction, we conclude that $R$  is asymmetric.
 
 \item[*\ref{ex-equi}] Let $R\subseteq A\times A$ be an equivalence relation in
 $A$. Let $g: A \mapsto \mathcal{P}(A)$ be the function defined as $g(a) =
