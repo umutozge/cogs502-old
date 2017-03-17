@@ -20,16 +20,16 @@ of the course.
 
 **Time and place:** Fridays, 14:40-17:30, II-03 (no class on May 19, last class on May 26, 2017).
 
-###Outline
+### Outline
 
 - [Mathematical preliminaries](https://github.com/umutozge/cogs502/blob/master/notes/00_cogs502-basics.pdf)
-- Propositional Logic
+- [Propositional Logic](https://github.com/umutozge/cogs502/blob/master/notes/01_cogs502-propositional-logic.pdf)
 - Predicate Logic
 - Lambda Calculus
 
 Programming will go in tandem with the outline above.
 
-###Material
+### Material
 
 In addition to [Python notes](https://github.com/umutozge/prog-book),
 other lecture notes will be available on this site, and hardcopy at class.  
@@ -40,7 +40,7 @@ Partee, B. H., ter Meulen, A., and Wall, R. E. (1990). *Mathematical Methods i
 Guttag, J. (2013,2016). *Introduction to Computation and Programming Using Python*.
 MIT Press, Cambridge, MA.
 
-###Evaluation
+### Evaluation
 
 |Category| Date | Weight |
 :---|:---|---:
@@ -53,13 +53,13 @@ Homework  | TBA | 20%
 Final exam | TBA | 40%
 
 
-###Attendance
+### Attendance
 
 Not formally required; but past experience shows attendance is a robust
 predictor of success in this course. Make-up quizzes are possible in case of a
 medical issue.  
 
-###Various
+### Various
 
 - Mobile phones and similar devices must be in silent mode and in bags during
   exams.
@@ -68,7 +68,7 @@ medical issue.
 - Please feel free to contact me in case you have any special needs to follow
   the course.
 
-###Some past runs of this course
+### Some past runs of this course
 
 - [Fall 2015](http://users.metu.edu.tr/umozge/cr/cogs502Fall2015/)
 - [Fall 2016](http://users.metu.edu.tr/umozge/cr/cogs502Fall2016/)
