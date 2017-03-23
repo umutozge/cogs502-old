@@ -16,7 +16,8 @@
 \setlength{\headheight}{13.6pt}
 
 \begin{document}
-
+\tableofcontents
+\newpage
 \section{Logic, language, thought}
 \begin{itemize}
 \item Be advised not to take logic as a model of human thought and reasoning.
@@ -43,7 +44,158 @@ of logic.\footnote{Although the book itself is advanced for introductory level,
 
 \end{itemize}
 
-\section{Symbols}
+
+\section{Syntax of Propositional Logic}
+\label{induc}
+
+\begin{itemize}
+\item Any specification of a language starts with its alphabet.
+\item[] Our alphabet for $L_0$ -- the name we will give to our language -- is made up of three sets:
+
+\item[] Basic symbols:
+
+\begin{align}
+	P = \crbr{p,q,r,s,p_1,q_1,r_1,s_1,\ldots}
+\end{align} 
+
+\item[] Connective symbols:
+ 
+\begin{align}
+	C_1 &= \crbr{-} \\
+ 	C_2 &= \crbr{\land,\lor,\imp}
+\end{align} 
+
+\item[] Parentheses: \sysm{\crbr{(,)}}
+
+\item We can also collect the parts of our alphabet under a single set:
+
+\begin{align}
+\Sigma = P \cup C_1 \cup C_2 \cup \crbr{(,)}
+\end{align} 
+
+\item Let's call an \uterm{expression}, any finite sequence of (possibly
+repeated) elements from $\Sigma$. The following are some example expressions:
+
+\[
+p(\land r_{4291841}\lor-\quad\quad p-p \quad\quad   -))  \quad\quad \land\lor\land \quad\quad q_{345}\land
+\]
+
+\item It is not hard to see that there is no bound to the expressions we can
+form this way. Call this non-finite set of all the possible finite expressions
+formed by putting together a selection of symbols from $\Sigma$ in a specific
+order $\Sigma^*$.
+
+\item Usually, we are interested in expressions fulfilling certain
+criteria -- a subset of the set of all possible expressions. We distinguish
+these special expressions as the grammatical sentences of the language we are
+interested in.  
+
+\item Now we can define the grammatical expressions (sentences or \uterm{well-formed formulas})
+of our language \sysm{L_0}. And we will see
+that $L_0 \subset \sigmastar$.
+
+\item As you might have already realized, we identify a language with the set of its grammatical sentences. 
+
+\hrulefill
+\begin{udefinition}{Well-formed formulas of \sysm{L_0}.}
+\ezimeti{
+\item[i.] \sysm{\alpha \in L_0}, if \sysm{\alpha \in P}.
+\item[ii.] if $\alpha \in L_0$, so is $(\gamma\alpha)$, for $\gamma\in C_1$.
+\item[iii.] if $\alpha$, $\beta \in L_0$, then so is $(\alpha\gamma\beta)$, for
+$\gamma \in C_2$.
+\item[iv.] Nothing else is in $L_0$.
+}
+\end{udefinition}
+\hrulefill
+
+\item An analytic procedure for defining the notion ``well-formed formula of $L_0$''. We
+start from a complex expression and go down.
+
+\hrulefill
+\begin{udefinition}[wff's of $L_0$, ``top-down'']
+\ezimeti{
+\item[]
+\item[i.]
+$\alpha$ is a wff if $\alpha\in P$.
+\item[ii.]  
+$(-\alpha)$ is a wff iff $\alpha$ is a wff. 
+\item[iii.]
+$(\alpha\land\beta)$ is a wff iff $\alpha$ and $\beta$ are wff's. 
+\item[iv.] 
+$(\alpha\lor\beta)$ is a wff iff $\alpha$ and $\beta$ are wff's.
+\item[v.]
+Any expression that falls out of the above is not a wff.
+}
+\end{udefinition}
+\hrulefill
+
+
+
+\item Here is a synthetic way of specifying well-formed formulas. We start with the
+simplest expressions and go up.
+
+\hrulefill
+\begin{udefinition}[$L_0$, ``bottom-up'']\label{defbot}
+An expression is a wff (or belong to $L_0$)
+iff it is built from the
+elements of $P$ by applying a finite number of the following
+operations:\footnote{What is the difference between the parentheses on the left
+and right side of the equalities?}
+\begin{align}
+f_-(\alpha) & = (-\alpha)\\
+f_\land(\alpha,\beta) & = (\alpha\land\beta)\\
+f_\lor(\alpha,\beta) & = (\alpha\lor\beta)
+\end{align}
+\end{udefinition}
+\hrulefill
+
+
+\item This could be stated more formally:
+
+ \hrulefill
+ \begin{udefinition}[$L_0$, ``bottom-up'']
+ An expression $\alpha$ is a wff iff there exists a sequence of expressions
+ ordered in increasing length:
+
+\[
+ \alpha_1,\alpha_2,\ldots,\alpha_n
+\]
+
+such that \sysm{\alpha = \alpha_n}, and for any $\alpha_i$ for $i\leq n$, either
+\ezimeti{
+\item[i.] $\alpha_i \in P$;
+\item[ii.] or there exists $j,k < i$ such that
+$\alpha_i=f_\land(\alpha_j,\alpha_k)$ or $\alpha_i=f_\lor(\alpha_j,\alpha_k)$
+\item[iii.] or there exists a $j < i$ such that $\alpha_i=f_-(\alpha_j)$,
+
+where $f_-$, $f_\land$, and $f_\lor$ are as defined in
+Definition~\ref{defbot}.
+}
+ \end{udefinition}
+ \hrulefill
+
+\item All these definitions not only define what the wff's of $L_0$ are, but
+also their structure.
+
+\item This is best observed over \uterm{derivation} (or construction) trees.
+
+\begin{uexample}[Derivation trees]
+Draw the derivation tree of \sysm{((p\land q)\lor((- r)\lor (q\land(- s))))}
+\end{uexample}
+
+\end{itemize}
+
+\section{Semantics of Propositional Logic}
+
+\begin{itemize}
+
+\item In the previous section, we established the first half of a formal system.
+We know which sequences of symbols constitute a well-formed expression of our
+system. However, we do not yet know what those well-formed expressions mean. 
+
+\end{itemize}
+
+\subsection{Symbols}
 
 \begin{itemize}
 \item Signs and signification are central concepts in language, logic, and
@@ -71,7 +223,7 @@ serious interest in language.}
 \end{itemize}
 
 
-\section{Propositions}
+\subsection{Propositions}
 
 \begin{itemize}
 \item Let's characterize what a \uterm{proposition} is, indirectly  by way of 
@@ -114,8 +266,26 @@ declarative sentence to express it.
 \item Another way of saying this is that propositions are objects that have
 \uterm{truth values}. 
 
-\item This much explication of what a proposition is will suffice for our
-purposes.
+% \item This much explication of what a proposition is will suffice for our
+% purposes.
+
+
+% \item Can you see what could be the problem with  equating declarative sentences
+% with propositions?\footnote{Note to be read after discussing the question. For
+% Willard van Orman Quine, one of the giants of analytical philosophy, what is
+% problematic is not equating propositions with their linguistic expressions but
+% rather the opposite. He objects to  maintaining that there are abstract objects
+% called propositions which have their own life independent of the means that
+% express or denote them. Here I chose the ``anti-Quinean'' exposition, because
+% the discussion of Quine's objection is rather advanced for the current stage.
+% See his ``Two dogmas of empiricism'' for a starter on this arguably the most
+% central issue of analytical philosophy.}
+
+\end{itemize}
+
+\subsection{Propositional symbols}
+
+\begin{itemize}
 
 \item Propositional logic is called so, because its \uterm{atomic}\footnote{The
 adjective \intx{atomic} serves to suggest that atomic symbols  cannot be broken
@@ -123,177 +293,9 @@ down to further components. This use of \intx{atomic} is a remnant from a
 pre-nuclear conception of atoms.} symbols refer to objects called
 \uterm{propositions}.
 
-\item Can you see what could be the problem with  equating declarative sentences
-with propositions?\footnote{Note to be read after discussing the question. For
-Willard van Orman Quine, one of the giants of analytical philosophy, what is
-problematic is not equating propositions with their linguistic expressions but
-rather the opposite. He objects to  maintaining that there are abstract objects
-called propositions which have their own life independent of the means that
-express or denote them. Here I chose the ``anti-Quinean'' exposition, because
-the discussion of Quine's objection is rather advanced for the current stage.
-See his ``Two dogmas of empiricism'' for a starter on this arguably the most
-central issue of analytical philosophy.}
-
-
-\item We said that expressions of propositional logic denote propositions, but
-what are those expressions?
-
-\end{itemize}
-
-\section{Defining a language $L_0$}
-\label{induc}
-
-\ezimeti{
-\item Any specification of a language starts with its alphabet.
-\item[] Our alphabet for $L_0$ -- the name we will give to our language -- is made up of three sets:
-
-\item[] Basic symbols:
-
-\begin{align}
-	P = \crbr{p,q,r,s,p_1,q_1,r_1,s_1,\ldots}
-\end{align} 
-
-\item[] Connective symbols:
- 
-\begin{align}
-	C_1 &= \crbr{-} \\
- 	C_2 &= \crbr{\land,\lor}
-\end{align} 
-
-\item[] Parentheses: \sysm{\crbr{(,)}}
-
-\item We can also collect the parts of our alphabet under a single set:
-
-\begin{align}
-\Sigma = P \cup C_1 \cup C_2 \cup \crbr{(,)}
-\end{align} 
-
-\item Let's call an \uterm{expression}, any finite sequence of (possibly
-repeated) elements from $\Sigma$. The following are some example expressions:
-
-\[
-p(\land r_{4291841}\lor-\quad\quad p-p \quad\quad   -))  \quad\quad \land\lor\land \quad\quad q_{345}\land
-\]
-
-\item It is not hard to see that there is no bound to the expressions we can
-form this way. Call this non-finite set of all the possible finite expressions
-formed by putting together a selection of symbols from $\Sigma$ in a specific
-order $\Sigma^*$.
-
-\item Usually, we are interested in expressions fulfilling certain
-criteria -- a subset of the set of all possible expressions. We distinguish
-these special expressions as the grammatical sentences of the language we are
-interested in.  
-
-\item Now we can define the grammatical expressions (sentences of \uterm{well-formed formulas})
-of our language \sysm{L_0}. And we will see
-that $L_0 \subset \sigmastar$.
-
-\item As you might have already realized, we identify a language with the set of its grammatical sentences. 
-
-\hrulefill
-\begin{udefinition}{Well-formed formulas of \sysm{L_0}.}
-\ezimeti{
-\item[i.] \sysm{\alpha \in L_0}, if \sysm{\alpha \in P}.
-\item[ii.] if $\alpha \in L_0$, so is $(\gamma\alpha)$, for $\gamma\in C_1$.
-\item[iii.] if $\alpha$, $\beta \in L_0$, then so is $(\alpha\gamma\beta)$, for
-$\gamma \in C_2$.
-\item[iv.] Nothing else is in $L_0$.
-}
-\end{udefinition}
-\hrulefill
-
-\item An analytic procedure for defining the notion ``sentence of $L_0$''. We
-start from a complex expression and go down.
-
-\hrulefill
-\begin{udefinition}[wff's of $L_0$, ``top-down'']
-\ezimeti{
-\item[]
-\item[i.]
-$\alpha$ is a wff if $\alpha\in P$.
-\item[ii.]  
-$(-\alpha)$ is a wff iff $\alpha$ is a wff. 
-\item[iii.]
-$(\alpha\land\beta)$ is a wff iff $\alpha$ and $\beta$ are wff's. 
-\item[iv.] 
-$(\alpha\lor\beta)$ is a wff iff $\alpha$ and $\beta$ are wff's.
-\item[v.]
-Any expression that falls out of the above is not a wff.
-}
-\end{udefinition}
-\hrulefill
-
-
-
-\item Here is a synthetic way of specifying our sentences. We start with the
-simplest expressions and go up.
-
-\hrulefill
-\begin{udefinition}[$L_0$, ``bottom-up'']\label{defbot}
-An expression is a wff (or belong to $L_0$)
-iff it is built from the
-elements of $P$ by applying a finite number of the following
-operations:\footnote{What is the difference between the parentheses on the left
-and right side of the equalities?}
-\begin{align}
-f_-(\alpha) & = (-\alpha)\\
-f_\land(\alpha,\beta) & = (\alpha\land\beta)\\
-f_\lor(\alpha,\beta) & = (\alpha\lor\beta)
-\end{align}
-\end{udefinition}
-\hrulefill
-
-
-\item This could be put more formally:
-
- \hrulefill
- \begin{udefinition}[$L_0$, ``bottom-up'']
- An expression $\alpha$ is a wff iff there exists a sequence of expressions
- ordered in increasing length:
-
-\[
- \alpha_1,\alpha_2,\ldots,\alpha_n
-\]
-
-such that \sysm{\alpha = \alpha_n}, and for any $\alpha_i$ for $i\leq n$, either
-\ezimeti{
-\item[i.] $\alpha_i \in P$;
-\item[ii.] or there exists $j,k < i$ such that
-$\alpha_i=f_\land(\alpha_j,\alpha_k)$ or $\alpha_i=f_\lor(\alpha_j,\alpha_k)$
-\item[iii.] or there exists a $j < i$ such that $\alpha_i=f_-(\alpha_j)$,
-
-where $f_-$, $f_\land$, and $f_\lor$ are as defined in
-Definition~\ref{defbot}.
-}
- \end{udefinition}
- \hrulefill
-
-\item All these definitions not only define what the wff's of $L_0$ are, but
-also their structure.
-\item This is best observed over \uterm{derivation} (or construction) trees.
-
-\begin{uexample}[Derivation trees]
-Draw the derivation tree of \sysm{((p\land q)\lor((- r)\lor (q\land(- s))))}
-
-
-
-\end{uexample}
-
-}
-
-\section{Conjunction, alternation, negation}
-\ezimeti{
-
-\item In the previous section, we established the first half of a formal system. We know which
-sequences of symbols constitute a sentence of our system. However, we do not yet
-know what our sentences mean. Let's start with the simplest expressions of
-$L_0$.
-
-\item We will take our basic symbols to refer to propositions. For instance, we
-can agree on things like, $p$ stands for the proposition that the snow is white.
-Given this, we can see that $p$ is interchangeable with declarative sentences
-that express this proposition. Therefore, we can say 
+\item For instance, we can agree on things like, $p$ stands for the proposition
+that the snow is white.  Given this, we can see that $p$ is interchangeable with
+declarative sentences that express this proposition. Therefore, we can say 
 
 \item[] $p$ is interchangeable with `The snow is white.'
 \item[] $p$ is interchangeable with `Kar beyazd\i{r}.' 
@@ -302,22 +304,13 @@ that express this proposition. Therefore, we can say
 \item Sometimes you will see `means', `abbreviates', `stands for', `equals to', `=', and so on, in place of
 `is interchangeable with'.
 
-\item When we use a basic symbol of $L_0$ as part of a sentence of $L_0$, which
-possibly consists of only that symbol, we assert that the proposition referred
-to by the symbol holds. So, 
+\item When we use a basic symbol of $L_0$ as part of a well-formed formula of $L_0$, which
+possibly consists of only that symbol, we assert the proposition referred
+to by the symbol. So, 
 \begin{align}\label{p}
 p
 \end{align}
 says that the snow is white.
-
-\item The way to assert that a proposition named by a symbol does not hold, or,
-equivalently, to deny that a proposition named by a symbol, one puts a negation
-sign in front of it . For instance,
-
-\begin{align}
-(-p)
-\end{align}
-says that it is not the case that the snow is white.
 
 \item In science and other discourses, we are not only interested in
 what propositions are expressed, but also whether the expressed propositions actually hold or not.
@@ -334,21 +327,114 @@ to confusion.
 \item We will assume that, every proposition expressible in our system is either
 true or false, there is no case in between.
 
-\item A sentence consisting only of a basic symbol of $L_0$ has the same truth
+\item A wff consisting only of a basic symbol of $L_0$ has the same truth
 value as the proposition it expresses. Therefore, \xref{p} is true, or has the
 truth value 1, if the snow is actually white, and is false, or has the truth
-value 0, if it is not the case that snow is white. 
+value 0, if it is not the case that snow is white.
 
-\item From now on we will directly speak of the truth or falsity of the
-sentences of $L_0$, as well as of the propositions that they refer to. 
+\item From now on we will use ``formula'' in place of ``well-formed formula''
+and directly speak of the truth or falsity of formulas of $L_0$.
+\end{itemize}
 
-\item The negation of a sentence consisting only of a basic symbol has the opposite truth value of the symbol.
-`-p' is true if and only if `p' is false.
+\subsection{Valuations}
 
-\item Of course, it would not be much interesting to speak about propositions
-and their denial only one-by-one. 
+\begin{itemize}
 
-\item One way to form complex sentences out of simple ones is
+\item A \uterm{valuation} is a function from the set of propositional symbols to
+$\{ 0,1\}$. It tells which of our basic propositions are true and which are
+false.
+
+\item Assume we are dealing with a small subset of the language of propositional
+logic, where we have only three propositional symbols $\crbr{p,q,r}$. Then there
+are only eight possible valuations:
+\begin{align}\label{valfunc}
+\begin{array}[t]{c}
+V_1 = \crbr{(p,1),(q,1),(r,1)} \\
+V_2 = \crbr{(p,1),(q,1),(r,0)} \\
+V_3 = \crbr{(p,1),(q,0),(r,1)} \\
+V_4 = \crbr{(p,1),(q,0),(r,0)} \\
+V_5 = \crbr{(p,0),(q,1),(r,1)} \\
+V_6 = \crbr{(p,0),(q,1),(r,0)} \\
+V_7 = \crbr{(p,0),(q,0),(r,1)} \\
+V_8 = \crbr{(p,0),(q,0),(r,0)} 
+\end{array}
+\end{align}
+
+\item These eight functions can be pictured also as a table:
+
+\begin{align}\label{valtab}
+\begin{array}[t]{c|c|c}
+p & q & r \\
+\hline 
+1 & 1 &1 \\
+1 & 1 & 0\\
+1 & 0 &1 \\
+1 &  0& 0\\
+0 & 1 &1 \\
+0 & 1 & 0\\
+0 &  0& 1\\
+0 &  0& 0
+\end{array}
+\end{align}
+
+\item You can think of each function in \xref{valfunc} and, equivalently, each row
+in \xref{valtab} designating a state of the world we are interested in. For
+instance if you need to represent certain properties of a room for some reason and the
+propositional symbols are associated with the following propositions,
+
+\begin{align}
+\begin{array}{ll}
+p: & \text{lights are on}\\
+q: & \text{the door is locked}\\
+r: &\text{the room is occupied}
+\end{array}
+\end{align}
+
+
+each valuation corresponds to a certain state of the room. States are
+mutually exclusive, since at a given time the room is in exactly one of the possible states.
+
+\end{itemize}
+
+\subsection{Interpretation}
+
+\begin{itemize}
+
+\item To systematically characterize the meanings of formulas of propositional
+logic, we will make use of an interpretation function $\mathcal{I}$ that takes a valuation and
+a formula as input and gives a truth-value as output.
+
+\item For atomic formulas, those comprising of a single propositional symbol,
+defining the function is straightforward. 
+
+
+\begin{udefinition}\label{isimple}
+
+For any formula $P$ and a
+valuation $V$,
+
+\begin{align*}
+\mathcal{I}(P,V) = V(P)\text{, if } P \text{ is atomic}. 
+\end{align*}
+
+\qed
+\end{udefinition}
+
+\item Given that $V$ is a function from propositional symbols to truth values
+and $P$ is an atomic formula comprising of a single propositional symbol, $V(P)$
+gives you the truth-value of the expressed proposition according to the given
+valuation.
+
+\end{itemize}
+
+\subsection{Truth-functional connectives}
+
+\subsubsection{Conjunction}
+
+\begin{itemize}
+
+\item As we saw above in defining the syntax of propositional logic, one way to
+build complex formulas out of simple ones is
 \uterm{conjunction}. On the meaning side, a conjunction asserts that both
 conjuncts are true. If at least one of the conjuncts fails to be true, then the
 conjunction fails to be true as well. If $p$ stands for snow's being white and
@@ -358,22 +444,291 @@ $q$ stands for Berlin being the capital of France,
 \end{align}
 is true if and only if the snow is white and Berlin is the capital of France.
 
-\item Another binary connective is \uterm{alternation} (or
-\uterm{disjunction}).
+\item We can extend the definition of the interpretation function $\mathcal{I}$ as
+follows: For any formulas $P$ and $Q$ and valuation $V$:
+
+
+\begin{udefinition} \label{iconj}
+\begin{align*}
+\mathcal{I}((P\land Q),V) & = 1 \text{ if both } \mathcal{I}(P,V) = 1 \text{ and }
+\mathcal{I}(Q,V) = 1\\ 
+& = 0, \text{ otherwise}\nonumber
+\end{align*}
+
+\qed
+\end{udefinition}
+
+\item Note that the interpretation function $\mathcal{I}$ again takes two
+arguments, a formula and a valuation, but this time we want the first argument
+to be a conjunction.
+
+\item It is also possible to take the conjunction itself as a function that maps
+a pair of truth values to a truth value. The input pair is the truth-values of
+the left and the right conjuncts, respectively. Such functions are called
+\uterm{truth-functions}, as the value of the function depends entirely on the
+input truth-values. The customary way to express truth-functions is a
+\uterm{truth-table}: 
+
+\begin{align}
+\begin{array}{c|c|c}
+P & Q & P \land Q \\ \hline
+1 & 1 & 1\\
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 0
+\end{array}
+\end{align}
+
+\item A more compact way to express the same function is as follows, where the first column
+gives the values for the left conjunct and the first row gives the values for
+the right conjunct:
+
+\begin{align}
+\begin{array}{c|cc}
+\land & 1 & 0 \\ \hline
+1 &1 &0 \\
+0 &0 &0  
+\end{array}
+\end{align}
+
+\hrulefill
+\begin{uexample}\label{exconj1}
+Given the formula $(p\land q)$ and the valuation $\crbr{(p,1),(q,0)}$,
+\begin{align}
+\mathcal{I}((p\land q), \crbr{(p,1),(q,0)}) = 0 
+\end{align}
+since $\mathcal{I}(p,\crbr{(p,1),(q,0)}) = 1$, but
+$\mathcal{I}(q,\crbr{(p,1),(q,0)}) = 0$.
+
+\qed
+\end{uexample}
+\hrulefill
+
+\item As you might have noticed, in characterizing the interpretation function
+$\mathcal{I}$ we are using capital symols like $P$ instead of $p$. There is a
+reason for this. The lower-case symbols like $p$, $q$ and so on are part of our
+alphabet and are used to refer to atomic propositions. On the other hand the
+upper-case symbols like $P$ are used and will be used to refer to arbitrary
+formulas. An arbitrary formula can be of any complexity as well as being atomic.
+If you go back to \xref{isimple} you will see that we started with $P$ but then
+further restricted what $P$ can stand for by the expression `If $P$ is atomic'.
+
+\hrulefill
+\begin{uexample}\label{exconj2}
+This time we are given a more complex formula $((p\land q)\land r)$ and the
+valuation $V=\crbr{(p,1),(q,0),(r,1)}$,
+
+As our formula to be interpreted is a conjunction at the top level, we need to
+use the rule for conjunction given in \xref{iconj}. What we need to compute is
+the value of 
+
+\begin{align}\label{a0}
+\mathcal{I}(((p\land q)\land r), V) 
+\end{align}
+
+which dictates that 
+\begin{align}\label{a1}
+\mathcal{I}((p\land q), V) 
+\end{align}
+and 
+\begin{align}\label{a2}
+\mathcal{I}(r, V) 
+\end{align}
+both be 1.
+
+Further computations will reveal that while \xref{a2} is evaluated to 1,
+\xref{a1} is evaluated to 0; therefore the value of \xref{a0} is 0. 
+
+\qed
+\end{uexample}
+\hrulefill
+
+\item As examples \xref{exconj1} and \xref{exconj2} show, in computing the
+truth-value of a formula we need to use the notions `if', `both', `and' borrowed from
+natural language. It is possible and desirable to define the interpretation
+function fully in mathematical form. Here is one way to do it: 
+
+\begin{udefinition} \label{iconj2}
+\begin{align*}
+\mathcal{I}((P\land Q),V) & = \mathcal{I}(P,V) \times \mathcal{I}(Q,V) 
+\end{align*}
+
+\qed
+\end{udefinition}
+
+\item With definitions \xref{iconj2} and \xref{isimple} at hand, we can express
+the computation involved in example \xref{exconj2} as follows:
+
+\begin{align}
+\mathcal{I}(((p\land q)\land r), V) & = \mathcal{I}((p\land q),V) \times \mathcal{I}(r, V)\\
+                                    & = \mathcal{I}(p,V)\times \mathcal{I}(q, V)\times \mathcal{I}(r, V) \nonumber \\
+									& = 1 \times 0 \times 1 \nonumber \\
+									& = 0
+\end{align}
+
+
+\end{itemize}
+
+\subsubsection{Disjunction}
+\begin{itemize}
+
+\item Another binary connective is \uterm{disjunction} (or
+\uterm{alternation}).
 It differs from conjunction in being more tolerant about falsehood. The
-conjunction of two sentences come out true if at least one of the alternates is
-true.
+disjunction of two sentences come out true if at least one of the disjuncts is
+true. With the same propositions being expressed by $p$ and $q$ as above,
 
 \begin{align}
 (p \lor q)
 \end{align}
 
-is true if and only if the snow is white, or Berlin is the capital of France, or
-both.
+is true if and only if the snow is white, or Berlin is the capital of France,
+\emph{or both}.
 
 \item Note that we use ``if and only if'' in stating the cases under which
-conjunction and alternation are true. This is to say that they are false
+conjunction and disjunction are true. This is to say that they are false
 otherwise. 
+
+\item We add disjunction to the interpretation function:
+
+\begin{align}
+\mathcal{I}((P\lor Q),V) & = 1 \text{ if } \mathcal{I}(P,V) = 1 \text{ or }
+\mathcal{I}(Q,V) = 1\text{, or both}\\ 
+& = 0, \text{ otherwise}\nonumber
+\end{align}
+
+\item Here is the truth-table:
+
+\begin{align}
+\begin{array}{c|c|c}
+P & Q & P \lor Q \\ \hline
+1 & 1 & 1\\
+1 & 0 & 1\\
+0 & 1 & 1\\
+0 & 0 & 0
+\end{array}
+\end{align}
+
+\item And disjunction as a truth-function:
+
+\begin{align}
+\begin{array}{c|cc}
+\lor & 1 & 0 \\ \hline
+1 &1 &1 \\
+0 &1 &0  
+\end{array}
+\end{align}
+
+\end{itemize}
+
+\subsubsection{Negation}
+
+\begin{itemize}
+
+\item Negation is a device that flips the truth-value of whichever formula it is
+adjoined to.\footnote{Adjoining `$-$' and $P$ yields `$(-P)$' according to the
+syntax we defined for $L_0$.} 
+
+\item The interpretation function $\mathcal{I}$ handles negation as follows: For
+any formula $P$ and valuation $V$,
+\begin{align}
+\mathcal{I}((-P),V) &= 1 \text{ if } \mathcal{I}(P,V) = 0
+\end{align}
+
+\item The truth-table is,
+
+\begin{align}
+\begin{array}{c|c}
+P & -P \\ \hline
+1 & 0 \\
+0 & 1 
+\end{array}
+\end{align}
+
+\item Although negation does not connect any formulas to each other, it is
+established custom to call it a unary connective. Negation denotes the truth
+function,
+
+\begin{align}
+\begin{array}{c|c}
+- & \\ \hline
+1 & 0 \\
+0 & 1 
+\end{array}
+\end{align}
+
+\end{itemize}
+
+\subsubsection{Conditional}
+\begin{itemize}
+\item Under what circumstances would you consider the person who uttered the
+following sentence to have kept her word?
+
+\item[] ``If I get a job next summer, then I will marry you.''
+
+
+\item The connective `$\imp$', named \uterm{conditional} (or
+\uterm{material conditional}) is read ``if\ldots then'', or ``only
+if'' and  has the following truth-table: 
+
+$$
+\begin{array}{c|c|c}
+P & Q & P\imp Q \\ \hline
+1 & 1 & 1\\
+1 & 0 & 0\\
+0 & 1 & 1\\
+0 & 0 & 1
+\end{array}
+$$
+
+\item We extend the interpretation function to cover the conditional:
+
+\begin{align}
+\mathcal{I}((P\imp Q),V) & = 1 \text{ if } \mathcal{I}(P,V) = 0 \text{ or }
+\mathcal{I}(Q,V) = 1\text{, or both}\\ 
+& = 0, \text{ otherwise}\nonumber
+\end{align}
+
+\item Conditional denotes the truth-function,
+
+\begin{align}
+\begin{array}{c|c|c}
+\imp & 1 & 0 \\ \hline
+1 & 1 & 0 \\
+0 & 1 & 1 
+\end{array}
+\end{align}
+\end{itemize}
+
+\subsubsection{Biconditional}
+
+\begin{itemize}
+
+\item The connective `$\bicond$', named \uterm{biconditional}. It is read ``if
+and only if'' and comes out true whenever the two components agree in their
+truth value.
+
+\item For any formulas $P$ and $Q$ and valuation $V$, 
+\begin{align}
+\mathcal{I}((P\bicond Q),V) & = 1 \text{ if } \mathcal{I}(P,V) = \mathcal{I}(Q,V) \\
+						   & = 0 \text{ otherwise} \nonumber
+\end{align}
+
+
+\end{itemize}
+
+\section{Connective precedence and grouping}
+
+
+\begin{itemize}
+
+\item Both connectives of this section bind less tightly then conjunction and
+alternation. Therefore `$p\lor q\imp r$' is `$((p\lor q) \imp r)$'; you can
+simplify `$(p\lor(q\imp r))$' at most as `$p\lor(q\imp r)$'.
+ 
+\end{itemize}
+
+\begin{itemize}
 
 \item We would still have a quite impoverished language, if our connectives were
 to apply only to basic symbols. Fortunately, our connectives are totally blind
@@ -383,10 +738,7 @@ one-place connective.} All they care, as our definition of sentence given in the
 previous section makes clear, is that they connect sentences (or
 \uterm{formulas}) of propositional logic, either simple or complex.
 
-\item We will use capital symbols $P,Q,R,S$ and their subscripted forms as
-variables standing for formulas.
-
-
+\item We will use capital symbols $P,Q,R,S$ and their subscripted forms as variables standing for formulas.  
 \item For any formulas $P$, $Q \in L_0$:
 \begin{align*}
 (P \land Q) &\text{ is true, if and only if both } P \text{ and } Q \text{ are 
@@ -419,7 +771,7 @@ R)}'.
 
 \item But we need to agree on a convention when omitting parentheses from
 sentences with negation. For instance if we have `\sysm{-P \land Q}', we need to
-make clear the intended scope of negation, do we mean `\sysm{(-(P\land Q))}' or
+make clear the intended scope of negation: Do we mean `\sysm{(-(P\land Q))}' or
 `\sysm{((-P)\land Q)}'? We will say that negation \uterm{binds more tightly}
 than conjunction and alternation. In this convention, `\sysm{-P \land Q}' will mean
 `\sysm{((-P)\land Q)}'. In simplifying `\sysm{(-(P\land Q))}', the furthest we
@@ -440,86 +792,21 @@ What would `$-(p\land q)$' or `$-(p \lor q)$' be?
 \end{uexample}
 \hrulefill
 
-}
+
+\end{itemize}
+
+
+
 
 \section{Truth functions, truth tables, valuations}
-\ezimeti{
-\item  As our definitions for conjunction, disjunction and negation reveal, the
-truth value of a formula formed by a certain connective depends entirely on the truth
-values of the formula(s) being connected and the definition of the connective. 
 
-\item For instance you can see conjunction as an $f: \{0,1\} \times \{0,1\}
-\rightarrow \{0,1\}$. Likewise for alternation. Negation is an $f: \{0,1\}
-\rightarrow \{0,1\}$, namely $\{(0,1),(1,0)\}$.
-
-\item A more pictorial way of representing this is to use a \uterm{truth table}.
-
-\item[] For conjunction:
-
-$$
-\begin{array}{ccc}
-P & Q & P\land Q \\ \hline
-1 & 1 & 1\\
-1 & 0 & 0\\
-0 & 1 & 0\\
-0 & 0 & 0
-\end{array}
-$$
-
-\item This property makes our connectives \uterm{truth functional}.
-
-\item Can you think of a non-truth functional connective from natural language,
-which forms a declarative sentence by connecting two
-declarative sentences, but the truth value of the resulting sentence does not
-depend only on the truth values of the connected sentences.
-
-\item A \uterm{valuation} is a function from the set of propositional symbols to
-$\{ 0,1\}$. It tells which of our basic propositions are true and which are
-false.
+\begin{itemize}
 
 \item[] From this perspective, every formula imposes a filter on valuations; it
 picks a subset of the set of all possible valuations. This subset is the set of
 valuations that make the formula in question true.
 
-}
-
-\section{Conditional}
-\ezimeti{
-\item Under what circumstances would you consider the person who uttered the
-following sentence to have kept her word?
-
-\item[] ``If I get a job next summer, then I will marry you.''
-
-
-\item We add a new connective `$\imp$', named \uterm{conditional} (or
-\uterm{material conditional}), and which is read ``if\ldots then'', or ``only
-if''. It has the following truth-table: 
-
-$$
-\begin{array}{ccc}
-P & Q & P\imp Q \\ \hline
-1 & 1 & 1\\
-1 & 0 & 0\\
-0 & 1 & 1\\
-0 & 0 & 1
-\end{array}
-$$
-
-
-\item The conditional is redundant, you can define it in terms of the other
-connectives.
-
-\item A related connective, which is again redundant, is `$\bicond$', named
-\uterm{biconditional}. It is read ``if and only if'' and comes out true whenever
-the two components agree in their truth value.
-
-\item Both connectives of this section bind less tightly then conjunction and
-alternation. Therefore `$p\lor q\imp r$' is `$((p\lor q) \imp r)$'; you can
-simplify `$(p\lor(q\imp r))$' at most as `$p\lor(q\imp r)$'.
- 
-
-
-}
+\end{itemize}
 
 \section{Validity, contradictoriness, consistency}
 
