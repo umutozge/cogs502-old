@@ -2,7 +2,9 @@
 
 \usepackage{natbib,unatbib}
 \usepackage[nohide,twocolumn]{ulecnot}
-\usepackage{xyling}
+%\usepackage{xyling}
+\usepackage{tikz-qtree}
+
 
 \usepackage{ulogicproof}
 
@@ -210,9 +212,9 @@ word \intx{purse}) ``Collected Papers''. Be warned that Peirce might be
 quite challenging for beginners, but Saussure is a must read for everyone with a
 serious interest in language.}
 
-\Tree{ & \K{\textit{user}}\TRi[-3] &\\
-\K{\textit{sign}}  & & \K{\textit{object}}
-}
+\begin{tikzpicture}[level distance=60pt]
+\Tree [.user \edge[roof]; {symbol\hspace{50pt}object} ]
+\end{tikzpicture}
 
 \item Again some initial and rough characterizations: 
 	\begin{itemize}
@@ -505,7 +507,7 @@ $\mathcal{I}(q,\crbr{(p,1),(q,0)}) = 0$.
 \hrulefill
 
 \item As you might have noticed, in characterizing the interpretation function
-$\mathcal{I}$ we are using capital symols like $P$ instead of $p$. There is a
+$\mathcal{I}$ we are using capital symbols like $P$ instead of $p$. There is a
 reason for this. The lower-case symbols like $p$, $q$ and so on are part of our
 alphabet and are used to refer to atomic propositions. On the other hand the
 upper-case symbols like $P$ are used and will be used to refer to arbitrary
@@ -544,7 +546,7 @@ Further computations will reveal that while \xref{a2} is evaluated to 1,
 \hrulefill
 
 \item As examples \xref{exconj1} and \xref{exconj2} show, in computing the
-truth-value of a formula we need to use the notions `if', `both', `and' borrowed from
+truth-value of a formula we need to use the notions `if', `both', and `and' borrowed from
 natural language. It is possible and desirable to define the interpretation
 function fully in mathematical form. Here is one way to do it: 
 
@@ -585,19 +587,12 @@ true. With the same propositions being expressed by $p$ and $q$ as above,
 is true if and only if the snow is white, or Berlin is the capital of France,
 \emph{or both}.
 
-\item Note that we use ``if and only if'' in stating the cases under which
-conjunction and disjunction are true. This is to say that they are false
-otherwise. 
 
-\item We add disjunction to the interpretation function:
+% \item Note that we use ``if and only if'' in stating the cases under which
+% conjunction and disjunction are true. This is to say that they are false
+% otherwise. 
 
-\begin{align}
-\mathcal{I}((P\lor Q),V) & = 1 \text{ if } \mathcal{I}(P,V) = 1 \text{ or }
-\mathcal{I}(Q,V) = 1\text{, or both}\\ 
-& = 0, \text{ otherwise}\nonumber
-\end{align}
-
-\item Here is the truth-table:
+\item Here is the truth-table for disjunction:
 
 \begin{align}
 \begin{array}{c|c|c}
@@ -609,7 +604,7 @@ P & Q & P \lor Q \\ \hline
 \end{array}
 \end{align}
 
-\item And disjunction as a truth-function:
+and disjunction as a truth-function:
 
 \begin{align}
 \begin{array}{c|cc}
@@ -618,6 +613,23 @@ P & Q & P \lor Q \\ \hline
 0 &1 &0  
 \end{array}
 \end{align}
+
+\item We add disjunction to the interpretation function as follows:\footnote{$|x|$ is
+the absolute value of $x$, it equals to $x$ if $x\geq0$ and to $x\times -1$
+otherwise.}
+
+\begin{align}
+\mathcal{I}((P\lor Q),V) = |(|\mathcal{I}(P,V) - 1| \times |\mathcal{I}(Q,V)
+-1|) -1|
+\end{align}
+
+\item Another mathematical rendition of the interpretation function for
+disjunction would be:
+
+\begin{align}
+\mathcal{I}((P\lor Q),V) = (\mathcal{I}(P,V) + \mathcal{I}(Q,V))^2 \text{ mod }3
+\end{align}
+
 
 \end{itemize}
 
@@ -632,7 +644,7 @@ syntax we defined for $L_0$.}
 \item The interpretation function $\mathcal{I}$ handles negation as follows: For
 any formula $P$ and valuation $V$,
 \begin{align}
-\mathcal{I}((-P),V) &= 1 \text{ if } \mathcal{I}(P,V) = 0
+\mathcal{I}((-P),V) &= |\mathcal{I}(P,V) - 1|
 \end{align}
 
 \item The truth-table is,
@@ -681,15 +693,7 @@ P & Q & P\imp Q \\ \hline
 \end{array}
 $$
 
-\item We extend the interpretation function to cover the conditional:
-
-\begin{align}
-\mathcal{I}((P\imp Q),V) & = 1 \text{ if } \mathcal{I}(P,V) = 0 \text{ or }
-\mathcal{I}(Q,V) = 1\text{, or both}\\ 
-& = 0, \text{ otherwise}\nonumber
-\end{align}
-
-\item Conditional denotes the truth-function,
+\item The conditional denotes the truth-function,
 
 \begin{align}
 \begin{array}{c|c|c}
@@ -698,6 +702,14 @@ $$
 0 & 1 & 1 
 \end{array}
 \end{align}
+
+\item We extend the interpretation function to cover the conditional:
+
+\begin{align}
+\mathcal{I}((P\imp Q),V) & = (\mathcal{I}(P,V) - \mathcal{I}(Q,V) -1)^2 \text{
+mod } 3
+\end{align}
+
 \end{itemize}
 
 \subsubsection{Biconditional}
@@ -708,17 +720,12 @@ $$
 and only if'' and comes out true whenever the two components agree in their
 truth value.
 
-\item For any formulas $P$ and $Q$ and valuation $V$, 
-\begin{align}
-\mathcal{I}((P\bicond Q),V) & = 1 \text{ if } \mathcal{I}(P,V) = \mathcal{I}(Q,V) \\
-						   & = 0 \text{ otherwise} \nonumber
-\end{align}
-
+\item The truth-table, truth-function and the extension of the interpretation function for
+biconditional is left as an exercise.
 
 \end{itemize}
 
 \section{Connective precedence and grouping}
-
 
 \begin{itemize}
 
@@ -730,89 +737,141 @@ simplify `$(p\lor(q\imp r))$' at most as `$p\lor(q\imp r)$'.
 
 \begin{itemize}
 
-\item We would still have a quite impoverished language, if our connectives were
-to apply only to basic symbols. Fortunately, our connectives are totally blind
-to the internal makeup of the sentences they connect.\footnote{With some abuse
-of the meaning of ``connect'', we treat negation as a connective as well, a
-one-place connective.} All they care, as our definition of sentence given in the
-previous section makes clear, is that they connect sentences (or
-\uterm{formulas}) of propositional logic, either simple or complex.
-
-\item We will use capital symbols $P,Q,R,S$ and their subscripted forms as variables standing for formulas.  
-\item For any formulas $P$, $Q \in L_0$:
-\begin{align*}
-(P \land Q) &\text{ is true, if and only if both } P \text{ and } Q \text{ are 
-true.}\\
-(P \lor Q) &\text{ is true, if and only if at least one of } P \text{ and } Q \text{
-is true.}\\
-(-P) &\text{ is true, if and only if } P \text{ is false.}
-\end{align*}
-
-\item Conjunction and alternation enjoy certain properties familiar from set
-union and intersection:
-\begin{align*}
-(P\land P) &= P\\
-(P\land Q) &= (Q\land P)\\
-((P\land Q)\land R) &= (P\land (Q\land R))
-\end{align*}
-and likewise for alternation.
-\item Observe that the equalities we list above are on the basis of truth
-values. There is no way the two equated sentences can differ in their truth
-value.
-
 \item Our definition of $L_0$ requires the insertion of parenthesis in every step
-of connection, thereby making every possible sentence ambiguous with regards to
+of connection, thereby making every possible sentence unambiguous with regards to
 what is grouped with what. However, for ease of inspection and writing, we will
-omit parentheses where no ambiguity arises. 
+omit parentheses according to certain conventions. 
 
-\item[] For instance there is no harm in writing `\sysm{P\land Q}' instead of
-`\sysm{(P\land Q)}', or `\sysm{P\land Q\land R}' instead of `\sysm{((P\land Q)\land
-R)}'.
+\item Outermost parentheses are optional. 
 
-\item But we need to agree on a convention when omitting parentheses from
-sentences with negation. For instance if we have `\sysm{-P \land Q}', we need to
-make clear the intended scope of negation: Do we mean `\sysm{(-(P\land Q))}' or
-`\sysm{((-P)\land Q)}'? We will say that negation \uterm{binds more tightly}
-than conjunction and alternation. In this convention, `\sysm{-P \land Q}' will mean
-`\sysm{((-P)\land Q)}'. In simplifying `\sysm{(-(P\land Q))}', the furthest we
-can go is  `\sysm{-(P\land Q)}'
+\item Conjunction and disjunction are associative, therefore $(P\land (Q\land
+R))$, $((P\land Q)\land R)$ and $P\land Q\land R$ are all equivalent.
 
-\hrulefill
-\begin{uexample}
-Let $p$ abbreviate `John took vitamin C', and $q$, `John got flu.'
+\item Negation binds most tightly, $-P\land Q$ is different from $-(P\land Q)$
+and likewise for other connectives wrt negation. Conjunction and disjunction
+bind more tightly than conditional and biconditional: $P\land Q \imp R$  is
+different from $P\land (Q\imp R)$.
 
-\begin{tabular}{rl}
-$p \land q$ & John took vitamin C and John got flu.\\
-$-p \land q$ & John did not take vitamin C and John got flu.\\
-$p \land -q$ & John took vitamin C and John did not get flu.\\
-$-p \land -q$& John did not take vitamin C and John did not get flu
-\end{tabular}
-
-What would `$-(p\land q)$' or `$-(p \lor q)$' be? 
-\end{uexample}
-\hrulefill
-
-
+% \hrulefill
+% \begin{uexample}
+% Let $p$ abbreviate `John took vitamin C', and $q$, `John got flu.'
+% 
+% \begin{tabular}{rl}
+% $p \land q$ & John took vitamin C and John got flu.\\
+% $-p \land q$ & John did not take vitamin C and John got flu.\\
+% $p \land -q$ & John took vitamin C and John did not get flu.\\
+% $-p \land -q$& John did not take vitamin C and John did not get flu
+% \end{tabular}
+% 
+% What would `$-(p\land q)$' or `$-(p \lor q)$' be? 
+% \end{uexample}
+% \hrulefill
 \end{itemize}
 
-
-
-
-\section{Truth functions, truth tables, valuations}
+\section{Truth-tree method}
 
 \begin{itemize}
 
-\item[] From this perspective, every formula imposes a filter on valuations; it
+\item The interpretation function allows one to compute the truth value of a
+formula with respect to a given valuation.
+
+\item Some terminology: Given a valuation $V$ and a formula $F$, we say that
+`$V$ \uterm{satisfies} $F$'
+iff $\mathcal{I}(F,V)= 1$. 
+
+\item Sometimes one is interested in computing the \emph{set} of valuations that
+satisfy a formula. From this perspective, every formula imposes a filter on valuations; it
 picks a subset of the set of all possible valuations. This subset is the set of
-valuations that make the formula in question true.
+valuations that satisfy the formula in question.
+
+\item One straightforward method to compute the valuations that satisfy a formula
+true is to construct a truth-table for the entire formula, as we have been doing
+for connectives. 
+
+\hrulefill
+\begin{uexample}
+To find the valuations that satisfy,  
+
+\begin{align}\label{ttex}
+p\imp q\lor -r
+\end{align}
+we construct a truth-table:
+
+\[
+\begin{array}{c|c|c|c|c|c}
+p & q & r & -r & q\lor -r& p\imp q\lor -r\\ \hline
+ 1&1 & 1&0 &1 &1 \\
+ 1&1 & 0&1 &1 &1 \\
+ 1&0 & 1&0 &0 &0 \\
+ 1&0 & 0&1 &1 &1 \\
+ 0&1 & 1&0 &1 &1 \\
+ 0&1 & 0&1 &1 &1 \\
+ 0&0 & 1&0 &0 &1 \\
+ 0&0 & 0&1 &1 &1 
+\end{array}
+\]
+
+which shows that except the third valuation, namely $\crbr{(p,1),(q,0),(r,1)}$,
+all the valuations satisfy the formula $p\imp q\lor -r$.
+
+\qed
+\end{uexample}
+\hrulefill
+
+Truth-table method is a definitive method to find the valuations that satisfy a
+certain formula. However it has some redundant information. For instance, in
+\xref{ttex}, any valuation that maps $p$ to 0 is guaranteed to satisfy the
+formula, given the semantics of the conditional. In the truth-table method you
+nevertheless fill the rows that start with a $p$ value of 0 (the last four
+rows). 
+
+\item The method of \uterm{truth-trees} (or \uterm{semantic tableau}) offers a
+faster discovery procedure.
+
+\item The method consists of breaking formulas into atomic propositional symbols
+or their negations. Let us illustrate the procedure over \xref{ttex}. In the
+truth-tree method you break a formula from its main connective into cases
+consisting of sub-formulas that are required to hold for the decomposed formula
+to hold. As we have a conditional, we decompose our formula as follows:
+
+\begin{align}
+\begin{tikzpicture}[level distance=40pt] 
+\Tree [.$p\imp q\lor -r$ 
+		[.$-p$ ] 
+		[.$q\lor -r$ ]
+]
+\end{tikzpicture}
+\end{align}
+
+given that a conditional of the form $P\imp Q$ is true whenever $P$ is false or
+$Q$ is true. In the next step, we decompose the disjunction on the left branch:
+
+
+\begin{align}\label{ftree}
+\begin{tikzpicture}[level distance=40pt] 
+\Tree [.$p\imp q\lor -r$ 
+		[.$-p$ ] 
+		[.$q\lor -r$ 
+			[.$q$ ] [.$-r$ ] ]		
+		]
+]
+\end{tikzpicture}
+\end{align}
+
+\item We stop when we have only propositional symbols (or variables) and their
+negations on the leaves of the tree. The tree in \xref{ftree} shows that any
+valuation with a false $p$, or any valuation with a true $q$, or any valuation
+with a false $r$ satisfies the formula.
+
 
 \end{itemize}
 
 \section{Validity, contradictoriness, consistency}
 
 \ezimeti{
-\item A formula $P$ is \uterm{valid} if and only if it always comes out true
-regardless of the truth values of its components. 
+\item A formula $P$ is \uterm{valid} if and only if it comes out true with every
+valuation.
+
 \item[] We designate the validity of $P$ by:
 
 $$
@@ -829,8 +888,8 @@ $$
 \end{align*}
 
 
-\item A formula $P$ is \uterm{contradictory}, designated $\not\models P$, if and only if it always comes out
-false regardless of the truth values of its components. 
+\item A formula $P$ is \uterm{contradictory}, designated $\not\models P$, if and only if it comes out
+false in every valuation.
 
 \hrulefill
 \begin{uexercise}
@@ -1345,12 +1404,8 @@ which completes our proof as:
 \end{subproof}
 \end{logicproof}
 
-
 \qed
 \end{uexample}
-
-
-
 
 \section*{Self study} Except natural deduction, you can review what we have
 covered in propositional logic from \cite{parteeetal90}, Chapter 6, up to
@@ -1377,19 +1432,24 @@ priority to the logic part.
 \bibliographystyle{natgig}
 \end{document}
 
+\item We will use capital symbols $P,Q,R,S$ and their subscripted forms as variables standing for formulas.  
+\item For any formulas $P$, $Q \in L_0$:
+\begin{align*}
+(P \land Q) &\text{ is true, if and only if both } P \text{ and } Q \text{ are 
+true.}\\
+(P \lor Q) &\text{ is true, if and only if at least one of } P \text{ and } Q \text{
+is true.}\\
+(-P) &\text{ is true, if and only if } P \text{ is false.}
+\end{align*}
 
-
-
-\section{Structure and Grouping}
-
-\section{Use versus mention}
-
-\section{Validity}
-
-TODO: On the language part, start by all expressions, then expressions that are
-formulas, then theorems.
-
-
-Exercise: tree drawing for grouping.
-Exercise: make up an exercise using Quine's `neither nor'
-Exercise: N1 p80 q 9.9, abbreviation exercise. also 9.17
+\item Conjunction and alternation enjoy certain properties familiar from set
+union and intersection:
+\begin{align*}
+(P\land P) &= P\\
+(P\land Q) &= (Q\land P)\\
+((P\land Q)\land R) &= (P\land (Q\land R))
+\end{align*}
+and likewise for alternation.
+\item Observe that the equalities we list above are on the basis of truth
+values. There is no way the two equated sentences can differ in their truth
+value.
