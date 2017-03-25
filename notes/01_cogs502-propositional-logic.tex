@@ -4,7 +4,7 @@
 \usepackage[nohide,twocolumn]{ulecnot}
 %\usepackage{xyling}
 \usepackage{tikz-qtree}
-
+\usepackage{cancel}
 
 \usepackage{ulogicproof}
 
@@ -614,20 +614,11 @@ and disjunction as a truth-function:
 \end{array}
 \end{align}
 
-\item We add disjunction to the interpretation function as follows:\footnote{$|x|$ is
-the absolute value of $x$, it equals to $x$ if $x\geq0$ and to $x\times -1$
-otherwise.}
+\item We add disjunction to the interpretation function as follows:
 
 \begin{align}
-\mathcal{I}((P\lor Q),V) = |(|\mathcal{I}(P,V) - 1| \times |\mathcal{I}(Q,V)
--1|) -1|
-\end{align}
-
-\item Another mathematical rendition of the interpretation function for
-disjunction would be:
-
-\begin{align}
-\mathcal{I}((P\lor Q),V) = (\mathcal{I}(P,V) + \mathcal{I}(Q,V))^2 \text{ mod }3
+\mathcal{I}((P\lor Q),V) = \mathcal{I}(P,V) + \mathcal{I}(Q,V) -
+\mathcal{I}(P,V) \times \mathcal{I}(Q,V)
 \end{align}
 
 
@@ -832,11 +823,28 @@ faster discovery procedure.
 or their negations. Let us illustrate the procedure over \xref{ttex}. In the
 truth-tree method you break a formula from its main connective into cases
 consisting of sub-formulas that are required to hold for the decomposed formula
-to hold. As we have a conditional, we decompose our formula as follows:
+to hold. 
+
+\begin{uexample}
+Let us apply the truth-tree method to the formula $p\imp q\lor -r$. We start by
+writing the formula under investigation:
+
+\[
+p\imp q\lor -r
+\]
+
+In each step of decomposition we are concerned with the main connective of the
+formula to be decomposed. Decomposition involves enumerating structurally
+simpler formulas whose truth guarantees the truth of the formula under
+investigation. Our ultimate aim is to leave nothing that is more complex than a
+negation of a propositional symbol.
+
+As we have a conditional, we decompose our formula as follows:
 
 \begin{align}
-\begin{tikzpicture}[level distance=40pt] 
-\Tree [.$p\imp q\lor -r$ 
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$\cancel{p\imp q\lor -r}$ 
 		[.$-p$ ] 
 		[.$q\lor -r$ ]
 ]
@@ -844,27 +852,278 @@ to hold. As we have a conditional, we decompose our formula as follows:
 \end{align}
 
 given that a conditional of the form $P\imp Q$ is true whenever $P$ is false or
-$Q$ is true. In the next step, we decompose the disjunction on the left branch:
+$Q$ is true. When we are done with decomposing a formula we cross it out to
+avoid confusion.
+
+In the next step, we decompose the disjunction on the right branch, how to
+decompose a disjunction should not be hard to see:
 
 
-\begin{align}\label{ftree}
-\begin{tikzpicture}[level distance=40pt] 
-\Tree [.$p\imp q\lor -r$ 
+\begin{align}
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$\cancel{p\imp q\lor -r}$ 
 		[.$-p$ ] 
-		[.$q\lor -r$ 
+		[.$\cancel{q\lor -r}$ 
 			[.$q$ ] [.$-r$ ] ]		
 		]
 ]
 \end{tikzpicture}
 \end{align}
 
-\item We stop when we have only propositional symbols (or variables) and their
-negations on the leaves of the tree. The tree in \xref{ftree} shows that any
-valuation with a false $p$, or any valuation with a true $q$, or any valuation
-with a false $r$ satisfies the formula.
+We stop when we have only propositional symbols (or variables) and their
+negations on the leaves of the tree. We check all the paths in the tree for
+contradictions. A path has contradiction if there is both $P$ and $-P$ on it for
+some formula $P$. We mark a path with a contradiction with
+`$\times$' and those without contradiction with `$\surd$'. In our present case
+no path has contradictions:
+
+\begin{align}\label{ftree}
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$\cancel{p\imp q\lor -r}$ 
+		[.$-p$\\$\surd$ ] 
+		[.$\cancel{q\lor -r}$ 
+			[.$q$\\$\surd$ ] [.$-r$\\$\surd$ ] ]		
+		]
+]
+\end{tikzpicture}
+\end{align}
+
+The tree in \xref{ftree} contains all the information present in the truth-table
+\xref{ttex} in a more concise way. Each non-contradictory path corresponds to a
+set of rows in the truth-table. For instance the left most path which has $-p$
+stands for all the four rows in the table which has a 0 for $p$, and shows that
+in all these rows the main formula has the truth-value 1.
+
+\qed
+\end{uexample}
+
+\begin{uexample}
+Now let us have a more complicated example:
+
+\[
+(-p\lor q \imp r) \land (-q \imp s)
+\]
+
+For a conjunction to hold both conjuncts must hold, licensing the following
+decomposition:
+
+\begin{align}
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$\cancel{(-p\lor q\imp r)\land (-q\imp s)}$ 
+		[.$-p\lor q\imp r$ $-q\imp s$ ] ]
+\end{tikzpicture}
+\end{align}
+
+We do not branch as both conjuncts should hold at the same time, they are not
+alternatives as was the case in disjunction and conditional.
+
+We always continue decomposing from the left- and topmost decomposable formula.
+In the present case we have a conditional:
+
+\begin{align}
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$\cancel{(-p\lor q\imp r)\land (-q\imp s)}$ 
+		[.$\cancel{-p\lor q\imp r}$ 
+			[.$-q\imp s$ 
+				[.$-(-p\lor q)$ ]	
+				[.$r$ ]
+			] 
+		]
+	  ]
+\end{tikzpicture}
+\end{align}
+
+The left- and topmost decomposable formula is $-q\imp s$, we continue from
+there. This decomposition leads to branching with $--q$ and $s$. We will always
+cancel double negations without showing it as a separate step. Therefore, the
+branches will be $q$ and $s$. 
+
+At this point we need to be careful in applying the branching resulting from
+this decomposition to all the nodes that are reachable from the decomposed
+formula by going only down. The result is: 
+
+\begin{align}
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$\cancel{(-p\lor q\imp r)\land (-q\imp s)}$ 
+		[.$\cancel{-p\lor q\imp r}$ 
+			[.$\cancel{-q\imp s}$ 
+				[.$-(-p\lor q)$ 
+					[.$q$ ] [.$s$ ]
+				]	
+				[.$r$ $q$ $s$ 
+				]
+			] 
+		]
+	  ]
+\end{tikzpicture}
+\end{align}
+
+One more formula is left to be decomposed, which is the negation of a
+disjunction. A disjunction is false only when both disjuncts are false.
+Therefore decomposition proceeds as follows:
+
+\begin{align}
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$\cancel{(-p\lor q\imp r)\land (-q\imp s)}$ 
+		[.$\cancel{-p\lor q\imp r}$ 
+			[.$\cancel{-q\imp s}$ 
+				[.$\cancel{-(-p\lor q)}$ 
+					[.$q$ 
+					[.$p$ $-q$\\$\times$ ]	
+					] 
+					[.$s$ 
+					[.$p$ $-q$\\$\surd$ ]	
+					]
+				]	
+				[.$r$ $q$\\$\surd$ $s$\\$\surd$ 
+				]
+			] 
+		]
+	  ]
+\end{tikzpicture}
+\end{align}
+
+\qed
+\end{uexample}
 
 
+\item Now it is time to list decomposition rules for each connective and
+and their negation:
+\newpage
+\item[]{\bf Truth-tree construction rules:}
+
+\begin{align}
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$P\land Q$ [.$P$ $Q$ ] ]
+\end{tikzpicture}
+\quad\quad\quad
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$-(P\land Q)$ $-P$ $-Q$ ]
+\end{tikzpicture}
+\end{align}
+
+\begin{align}
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$P\lor Q$ $P$ $Q$  ]
+\end{tikzpicture}
+\quad\quad\quad
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$-(P\lor Q)$ [.$-P$ $-Q$ ] ]
+\end{tikzpicture}
+\end{align}
+
+\begin{align}
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$P\imp Q$ $-P$ $Q$  ]
+\end{tikzpicture}
+\quad\quad\quad
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$-(P\imp Q)$ [.$P$ $-Q$ ] ]
+\end{tikzpicture}
+\end{align}
+
+\begin{align}
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$P\bicond Q$ [.$P$  $Q$ ] [.$-P$  $-Q$ ]]
+\end{tikzpicture}
+\quad\quad\quad
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$-(P\bicond Q)$ [.$P$ $-Q$ ] [.$-P$ $Q$ ] ]
+\end{tikzpicture}
+\end{align}
+
+\hrulefill
+\begin{uexercise}\label{treecons}
+
+Construct truth-trees for the following formulas:
+
+\begin{enumerate}
+\item $(p\imp q) \imp (p\imp q\lor r)$
+\item $(p\imp q) \imp (p\imp q\land r)$
+\item $(p\land s) \bicond (q \lor r)$
+\item $((p\imp q) \imp s)\land (p\imp (q\imp s))$
+\item $p\land (-q\lor -p)$
+\item $((p\imp -q) \imp -p) \imp q$
+\item $(p\imp q) \imp (-p \imp -q)$
+\item $(p\imp q) \imp (-q \imp -p)$
+\item $((p\imp q)\imp p) \imp p$
+\item $(p\lor q) \imp (p\imp q)$
+\item $(p\imp q) \land (q\imp r) \land (r\imp p)$
+\item $(p\imp q) \land (q\imp r) \land (r\imp p)$
+\item $-(-(-p\land -q)\land -p)\bicond -(q\lor -p)$
+
+\end{enumerate}
+\qed
+\end{uexercise}
+\hrulefill
+
+\hrulefill
+\begin{uexercise}\label{treeconsfol}
+Inspecting the trees for the previous question, do you find it easy to discover
+the valuations that make the formula false? Any useful strategy for this task?
+
+\qed
+\end{uexercise}
+\hrulefill
+
+
+\hrulefill
+\begin{uexercise}\label{treeconsfol}
+You are given that Mary, a graduate student, is such that:
+
+\begin{quote}\small
+If she studies, she  gets good grades.\\
+If she doesn't study, she enjoys life.\\
+If she doesn't get good grades, she doesn't enjoy life.
+\end{quote}
+
+Symbolize these statements in propositional logic and construct a truth-tree to
+answer the following questions:
+
+\begin{enumerate}
+\item Does she enjoy life?
+\item Does she get good grades?
+\end{enumerate}
+
+\qed
+\end{uexercise}
+\hrulefill
+
+\hrulefill
+\begin{uexercise}\label{treeconsfol}
+We have the following information:
+
+\begin{quote}\small
+If samples are contaminated, then there is leakage in the reactor or there is
+non-consumed fuel.\\ 
+All the fuel is consumed.\\
+There is no leakage in the reactor or the detector is malfunctioning.\\
+The detector is functioning properly.
+
+\end{quote}
+
+Someone asserts that samples are contaminated. Do we need to believe? Motivate
+your answer by constructing a truth-tree.
+
+\qed
+\end{uexercise}
+\hrulefill
 \end{itemize}
+
 
 \section{Validity, contradictoriness, consistency}
 
