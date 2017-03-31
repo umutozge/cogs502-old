@@ -875,8 +875,9 @@ We stop when we have only propositional symbols (or variables) and their
 negations on the leaves of the tree. We check all the paths in the tree for
 contradictions. A path has contradiction if there is both $P$ and $-P$ on it for
 some formula $P$. We mark a path with a contradiction with
-`$\times$' and those without contradiction with `$\surd$'. In our present case
-no path has contradictions:
+`$\times$' and that path is said to be \uterm{closed}. The paths without
+contradiction are marked with `$\surd$'. In our present case
+no path is closed:
 
 \begin{align}\label{ftree}
 \begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
@@ -1069,19 +1070,14 @@ Construct truth-trees for the following formulas:
 \end{enumerate}
 \qed
 \end{uexercise}
-\hrulefill
 
-\hrulefill
 \begin{uexercise}\label{treeconsfol}
 Inspecting the trees for the previous question, do you find it easy to discover
 the valuations that make the formula false? Any useful strategy for this task?
 
 \qed
 \end{uexercise}
-\hrulefill
 
-
-\hrulefill
 \begin{uexercise}\label{treeconsfol}
 You are given that Mary, a graduate student, is such that:
 
@@ -1101,9 +1097,7 @@ answer the following questions:
 
 \qed
 \end{uexercise}
-\hrulefill
 
-\hrulefill
 \begin{uexercise}\label{treeconsfol}
 We have the following information:
 
@@ -1123,11 +1117,10 @@ your answer by constructing a truth-tree.
 \end{uexercise}
 \hrulefill
 \end{itemize}
+	
+\section{Validity, consistency, inconsistency}
 
-
-\section{Validity, contradictoriness, consistency}
-
-\ezimeti{
+\begin{itemize}
 \item A formula $P$ is \uterm{valid} if and only if it comes out true with every
 valuation.
 
@@ -1142,21 +1135,140 @@ $$
 
 \item[] Some examples:
 
-\begin{align*}
-&\models p\lor -p \\ &\models p\imp(q\imp p) 
-\end{align*}
+\begin{align}
+&\models p\lor -p \\ &\models p\imp(q\imp p) \nonumber
+\end{align}
 
 
-\item A formula $P$ is \uterm{contradictory}, designated $\not\models P$, if and only if it comes out
-false in every valuation.
+\item A formula $P$ is \uterm{inconsistent} (or \uterm{contradictory}), designated $\not\models P$, if and only if it comes out
+false in every valuation. For instance,
+\begin{align}\label{incons}
+\not\models -(p\imp q) \land -p
+	\end{align}
 
-\hrulefill
-\begin{uexercise}
-Can you think of a general method of testing whether a given formula is valid,
-contradictory, or consistent?
-\end{uexercise}
-\hrulefill
-}
+\item A formula $P$ is \uterm{consistent} (or \uterm{satisfiable} if and only if
+there exists at least one valuation $V$ such that $V$ satisfies
+$P$.\footnote{Note that every valid formula is consistent, but not every
+consistent formula is valid.}
+
+\item Given a formula, one way to decide whether it is valid, consistent or
+inconsistent is to construct a truth-table and inspect the rows. For a valid
+formula, all the rows must have 1 in their rightmost cells; for an inconsistent
+one, they must have 0; and for a consistent formula there must be at least one
+row with a rightmost cell containing 1.
+
+\item Again truth-tree method proves to be a better tool for such judgments. 
+
+\item An inconsistent formula has a truth-tree with all the branches closed; in
+other words, there is not a single way (=valuation) that the formula can be
+true.
+
+\begin{uexample}
+Let us show that the formula \xref{incons} is inconsistent.
+
+\begin{align}
+\begin{tikzpicture}[level distance=40pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$\cancel{-(p\imp q)\land -p}$ [.$\cancel{-(p\imp q)}$ [.$-p$ [.$p$ $-q$\\$\times$ ] ] ] ]
+\end{tikzpicture}
+\end{align}
+
+As all the branches are closed, we can conclude that \xref{incons} is
+inconsistent. 
+
+\qed
+\end{uexample}
+
+\item Check for consistency is also straightforward, one unclosed branch
+guarantees consistency.
+
+\item When it comes to validity, however, furhter inspection might be required
+after the construction of the tree. For instance, construct the truth-tree for
+
+\begin{align}\label{validex}
+(p\imp(q\imp r)) \imp ((p\imp q)\imp(p\imp r))
+\end{align}
+
+how easy it is to see whether it is valid or not?
+
+\item At this point we make use of a relation between validity and
+inconsistency. Given that a valid formula is true in every valuation, its denial
+must be false in every valuation--that is, it must be inconsistent. Therefore,
+whenever we aim to test a formula for validty, we simply take its negation and
+construct the truth-tree: If all the branches are closed, then the formula is
+valid, otherwise it is not valid. In the latter case, any open branch will tell
+show you valuation(s) that makes the formula false.
+
+\begin{uexample}
+Show that formula \xref{validex} is valid. 
+
+We construct the truth tree of its denial:
+\begin{align}
+\begin{tikzpicture}[level distance=36pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$\cancel{-((p\imp(q\imp r)) \imp ((p\imp q)\imp(p\imp r)))}$ 
+		[.$\cancel{p\imp(q\imp r)}$ 
+			[.$\cancel{-((p\imp q)\imp(p\imp r))}$ 
+			[.$-p$ 
+				[.$\cancel{p\imp q}$ [.$\cancel{-(p\imp r)}$ 
+				[.$-p$ [.$p$ $-r$\\$\times$ ] ]
+			    [.$q$  [.$p$ $-r$\\$\times$ ] ]
+				] ]
+			]
+			[.$\cancel{q\imp r}$ 
+				[.$\cancel{p\imp q}$ 
+				[.$\cancel{-(p\imp r)}$ 
+					[.$-q$ [.$-p$ [.$p$ $-r$\\$\times$ ] ] [.$q$ [.$p$ $-r$\\$\times$ ] ] ]
+					[.$r$ [.$-p$ [.$p$ $-r$\\$\times$ ] ] [.$q$ [.$p$ $-r$\\$\times$ ] ] ]
+				]
+				]
+		    ]
+			]
+        ]
+	]
+\end{tikzpicture}
+\end{align}
+
+The tree shows that there is no valuation that would satisfy the formula, since
+if there had been any, we would have at least one branch that is not closed.
+
+Notice that some of the branches in the tree can be observed to lead to a
+contradiction before the entire branch is completed. If the procedure we use to
+construct the tree checks for contradictions not only after the entire tree is
+constructed but after each expansion of the tree into branches, then some labor
+and space could be saved. Such a procedure would lead to the following tree:
+
+\begin{align}
+\begin{tikzpicture}[level distance=33pt, sibling distance=30pt] 
+\tikzset{every tree node/.style={align=center,anchor=north}}
+\Tree [.$\cancel{-((p\imp(q\imp r)) \imp ((p\imp q)\imp(p\imp r)))}$ 
+		[.$\cancel{p\imp(q\imp r)}$ 
+			[.$\cancel{-((p\imp q)\imp(p\imp r))}$ 
+			[.$-p$ 
+				[.$\cancel{p\imp q}$ [.$\cancel{-(p\imp r)}$ 
+				[.$-p$ [.$p$\\$\times$ ] ]
+			    [.$q$  [.$p$\\$\times$ ] ]
+				] ]
+			]
+			[.$\cancel{q\imp r}$ 
+				[.$\cancel{p\imp q}$ 
+				[.$\cancel{-(p\imp r)}$ 
+					[.$-q$ [.$-p$ [.$p$\\$\times$ ] ] [.$q$\\$\times$  ] ]
+					[.$r$ [.$-p$ [.$p$\\$\times$ ] ] [.$q$ [.$p$ $-r$\\$\times$ ] ] ]
+				]
+				]
+		    ]
+			]
+        ]
+	]
+\end{tikzpicture}
+\end{align}
+
+\qed
+\end{uexample}
+
+
+\end{itemize}
 
 \section{Implication, equivalence and substitution}
 \ezimeti{
