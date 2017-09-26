@@ -1,4 +1,4 @@
-COGS 502 - Programming and Logic - Spring 2017
+COGS 502 - Programming and Logic - Fall 2017
 -------------------------------------------------------
 
 
@@ -8,7 +8,7 @@ COGS 502 - Programming and Logic - Spring 2017
  Room B-208, phone: 210 7884  
  Office hours: Wed 10:30--12:30 and/or by appointment.
 
-**Teaching assistant:** Tunç Güven Kaya, `tuncgk@gmail.com`
+**Teaching assistant:** Fırat Öter, `firatoter@gmail.com`
 
 **News and discussion:** in class and the Google
 [group](https://groups.google.com/forum/#!forum/metu-cogs-502-logic-and-programming)
@@ -18,14 +18,14 @@ of the course.
 [group](https://groups.google.com/forum/#!forum/metu-cogs-502-logic-and-programming), make sure that you do not miss important announcements.  
 
 
-**Time and place:** Fridays, 14:40-17:30, II-03 (no class on May 19, last class on May 26, 2017).
+**Time and place:** Tue, 11:40-14:30, II-03 (last class on Jan 2, 2018).
 
 ### Outline
 
 - [Mathematical preliminaries](https://github.com/umutozge/cogs502/blob/master/notes/00_cogs502-basics.pdf)
 - [Propositional Logic](https://github.com/umutozge/cogs502/blob/master/notes/01_cogs502-propositional-logic.pdf)
-- Predicate Logic
-- Lambda Calculus
+- [Predicate Logic](https://github.com/umutozge/cogs502/blob/master/notes/02_cogs502-predicate-logic.pdf)
+- [Lambda Calculus](https://github.com/umutozge/cogs502/blob/master/notes/03_cogs502-lambda-calculus.pdf)
 
 Programming will go in tandem with the outline above.
 
@@ -44,11 +44,11 @@ MIT Press, Cambridge, MA.
 
 |Category| Date | Weight |
 :---|:---|---:
-5 Quizes, best 4 counted  | Mar 10 | 40%
-| | Mar 31 |   
-| | Apr 21 |   
-| | May 5  |   
-| | May 26 |   
+5 Quizes, best 4 counted  | TBA | 40%
+| | TBA |   
+| | TBA |   
+| | TBA |   
+| | TBA |   
 Homework  | TBA | 20%
 Final exam | TBA | 40%
 
