@@ -1,0 +1,196 @@
+\documentclass[11pt]{article}
+\usepackage{natbib,unatbib}
+\usepackage[nohide,twocolumn]{ulecnot}
+
+\usepackage{bussproofs}
+
+
+\pagestyle{fancy}
+\lhead{COGS 502 -- Programming and Logic}
+\chead{$\lambda$-Calculus}
+\rhead{Updated \it \today}
+\lfoot{Umut \"Ozge}
+\cfoot{}
+\rfoot{Page \thepage/\pageref{LastPage}}
+\setlength{\headheight}{13.6pt}
+
+\usepackage{tikz-qtree}
+
+\begin{document}
+
+
+%\section{Lambda operator, bondage, freedom, substitution}
+\section{Expressions}
+
+\ezimeti{
+
+\item Our basic notions here are \uterm{expression} and \uterm{evaluation}.
+
+\begin{udefinition}[Expression]
+Let $A=\{ a,b,\ldots,z\}$ be the set of names.
+\begin{itemize}
+\item[i.] all names are expressions; 
+\item[ii.] if $\omega_1$ and $\omega_2$ are expressions, so is $(\omega_1\omega_2)$;
+\item[iii.] if $\omega$ is an expression and $\alpha$ is a name, then
+$(\lambda\alpha.\omega)$ is an expression.
+\item[iv.] nothing else is an expression.
+\end{itemize}
+\end{udefinition} 
+
+\item Some example expressions:
+\renewcommand{\arraycolsep}{6pt}
+\renewcommand{\arraystretch}{2}
+
+$$
+\begin{array}{cccc}
+x & (xy) & (x(yz))  & ((xy)z) \\
+(\lambda x.x) & (\lambda y.(\lambda x.x)) & (\lambda z.(x(\lambda y.(yz)))) &
+(x(\lambda z.(\lambda y.(yz))))\\
+x(\lambda x.x) & (\lambda y.(\lambda x.x))(\lambda x.x) & (\lambda y.(\lambda x.x))(\lambda x.x)(xy)& (x(yz))((xy)z)
+\end{array}
+$$
+
+\item Note that in lambda calculus we write $f x$ rather than the usual $f(x)$
+to represent the application of function $f$ to the argument $x$.
+
+
+\item[] {\bf Notational conventions:}
+
+\ezimeti{
+\item[i.] Omit the outermost parentheses:
+	
+$$
+\begin{array}{cccc}
+x & xy & x(yz)  & (xy)z \\
+\lambda x.x & \lambda y.(\lambda x.x) & \lambda z.(x(\lambda y.(yz))) & x(\lambda z.(\lambda y.(yz)))
+\end{array}
+$$
+
+\item[ii.] Parentheses associate to left:    
+
+\begin{align*}
+fxyz & \equiv (((fx)y)z)
+\end{align*}
+
+\item[iii.] Stacked lambdas:
+\begin{align*}
+(\lambda f.(\lambda x.(f(fx))))  &\equiv \lambda f \lambda x.(f(fx)) \\
+& \equiv \lambda f x.(f(fx))
+\end{align*}
+}
+
+\item The notions of bondage, freedom and substitution we covered in predicate
+logic apply here as well.
+
+\section{$\beta$-reduction}
+
+\item An expression of the form $(\lambda \alpha.\gamma)\omega$ is called a
+\uterm{$\beta$-redex}. 
+
+
+\item It can be \uterm{$\beta$-reduced} to $\subs{\gamma}{\omega}{\alpha}$,
+called a \uterm{reduct}, if $\omega$ is free for $\alpha$ in $\gamma$.
+
+\item  A lambda expression can be reduced by turning all the redexes to reducts,
+which results in a \uterm{$\beta$-normal} form.
+
+\item Some example reductions:
+\begin{align*}
+(\lambda f.fx)g  & \breduce gx \\
+(\lambda f.fx)ga  & \breduce gxa \\
+(\lambda f.fx)(ga) & \breduce gax \\
+(\lambda f\lambda x.fx)g a & \breduce ga \\
+%(\lambda x\lambda y \lambda z.x(yz))f & \breduce \\
+\end{align*}
+
+\item There may be more than one redex in a
+expression:
+
+\begin{align*}
+(\lambda x.y)((\lambda z.zz)(\lambda w.w)) & \breduce (\lambda x.y)((\lambda w.w)(\lambda w.w))\\
+											& \breduce (\lambda x.y)(\lambda w.w)
+											& \breduce y 
+\end{align*}
+
+\item Another reduction of the same expression would be:
+
+\begin{align*}
+(\lambda x.y)((\lambda z.zz)(\lambda w.w)) & \breduce y 
+\end{align*}
+
+\item The first is called the \uterm{applicative order} reduction; the second is
+called the \uterm{normal order} reduction.
+
+\item Reduce the following expressions:
+\begin{align*}
+(\lambda x. m x)j\\
+(\lambda y. y j)m\\
+(\lambda x.\lambda y. y(y x))jm\\
+(\lambda y.y j)(\lambda x. m x)\\
+(\lambda x. xx)(\lambda y. yyy)
+\end{align*}
+
+
+
+
+
+
+
+% \item Reduce the following expression in both applicative and normal order:
+% 
+% \begin{align*}
+% (\lambda p_1\lambda p_2. p_1 0 \land p_2)(\lambda x. x\not= 0)((\lambda y.\frac{5}{y} = 0)0)
+% \end{align*}
+
+
+}
+\section{Lambda calculus in action: some examples}
+
+\subsection{Logic}
+\ezimeti{
+\item Let's define the truth values:
+
+\begin{align*}
+\combf{T} \equiv \lambda x\lambda y.x\\
+\combf{F} \equiv \lambda x\lambda y.y
+\end{align*}
+
+\item Verify that $\lambda x\lambda y.yxy$ behaves like \emph{and} in prefix
+notation (i.e. $\land p q$). 
+
+\item Can you think of lambda expressions for $\lor$ and $-$?
+\item What about an if-then-else function that applies to the test, a function
+to execute if the test is true and a function to execute if the test is false.     
+
+}
+\subsection{Arithmetic}
+
+\ezimeti{
+
+\item Number can be represented as lambda expressions in the following way:
+\begin{align*}
+0 & \equiv \lambda f\lambda x.x\\
+1 & \equiv \lambda f\lambda x.fx\\
+2 & \equiv \lambda f\lambda x.f(fx)\\
+3 & \equiv \lambda f\lambda x.f(f(fx))\\
+\vdots
+\end{align*}
+
+
+\item A successor function which returns $n+1$ given $n$ is:
+\begin{align*}
+\mathbf{S}\equiv \lambda a\lambda f\lambda x. f(afx)
+\end{align*}
+
+\item Here are addition and multiplication (again in prefix notation); verify
+that they do what they are meant to do. 
+
+\begin{align*}
+\mathbf{+} & \equiv \lambda a\lambda b\lambda f\lambda x.af(bfx)\\
+\mathbf{\times} & \equiv \lambda a\lambda b\lambda f.a(bf)
+\end{align*}
+
+
+}
+
+\end{document}
