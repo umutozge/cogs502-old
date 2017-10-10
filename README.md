@@ -44,11 +44,11 @@ MIT Press, Cambridge, MA.
 
 |Category| Date | Weight |
 :---|:---|---:
-5 Quizes, best 4 counted  | TBA | 40%
-| | TBA |   
-| | TBA |   
-| | TBA |   
-| | TBA |   
+5 Quizes, best 4 counted  | Oct 31 | 40%
+| | Nov 14 |   
+| | Nov 28 |   
+| | Dec 12 |   
+| | Dec 26 |   
 Homework  | TBA | 20%
 Final exam | TBA | 40%
 
