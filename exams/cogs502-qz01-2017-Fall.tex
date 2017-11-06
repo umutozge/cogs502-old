@@ -1,0 +1,76 @@
+\documentclass[11pt]{exam}
+
+\usepackage{umut}
+\usepackage{mathptmx}
+
+\printanswers
+
+\pagestyle{headandfoot}
+	\lhead{Cogs 502 -- Prog. \& Log. \\ Fall 2017}
+	\chead{Quiz 1}
+\rhead{Oct 31}
+\lfoot{}
+\pointname{\%}
+
+
+	
+\begin{document}
+\qformat{\bf Question \thequestion%
+\ifthenelse{\equal{\thepoints}{}}{}{\quad (\thepoints)} \hfill}
+
+\makebox[\textwidth]{Name of the Student:\enspace\hrulefill}
+\vspace{10pt}
+\begin{center}
+\fbox{\parbox{6in}{\bf\centering There are 3 questions in the exam. You
+have 30 minutes to finish the exam.}}
+\end{center}
+\vspace{10pt}
+
+\begin{questions}
+
+\question[30] State true or false:
+
+\begin{parts}
+\part \cntx\ $A \subseteq B$ if and only if there exists no $a$ such that $a\in A$ and $a\not\in B$.
+\part \cntx\ Let $\mathcal{P}(A)$  be the set of all subsets of $A$; $\bigcup \mathcal{P}(A) \in  \mathcal{P}(A)$.
+\part \cntx\ There are as many \emph{b}'s in \emph{trick} as in \emph{crick}. 
+\part \cntx\ $\emptyset \subset \{ \emptyset\}$
+\part \cntx\ For any sets $A$, $B$, $C$, if $A\subseteq B$ and $B\not\subseteq C$, then $A\not\subseteq C$.
+\part \cntx\ If $a,b \in A$, then $\{ \{ a\}, \{ a,b\}\} \in \mathcal{P}(\mathcal{P}(A))$.
+\end{parts}
+
+\question[40] 
+
+Remember the definitions of reflexivity, symmetry and transitivity:
+
+A relation $R\subseteq A\times A$ is \uterm{reflexive} if and only if for each
+$x \in A$, $(x,x) \in R$.
+
+A relation $R\subseteq A\times A$ is \uterm{symmetric} if and only if for each
+$(x,y) \in R$, $(y,x)$ is also in $R$.
+
+A relation $R\subseteq A\times A$ is \uterm{transitive} if and only if
+whenever $(x,y)$ and $(y,z)$ are  in $R$,  then $(x,z)$ is also in $R$.
+
+Given two relations $R_1$ and $R_2$ in $A\times A$ for some set $A$, state true or false:
+
+\begin{parts}
+\part \cntx\  if both $R_1$ and $R_2$  are reflexive, then $R_1 \cap R_2$ is also reflexive. 
+\part \cntx\  if both $R_1$ and $R_2$  are symmetric, then $R_1 \cup R_2$ is also symmetric. 
+\part \cntx\  if both $R_1$ and $R_2$  are symmetric, then $R_1 \cap R_2$ is also symmetric. 
+\part \cntx\  if both $R_1$ and $R_2$  are transitive, then $R_1 \cap R_2$ is also transitive. 
+\part \cntx\  if both $R_1$ and $R_2$  are transitive, then $R_1 \cup R_2$ is also transitive. 
+\end{parts}
+
+\question[30]
+
+Let $A=\{ 1,2,3,4\}$; give a relation $R$ in $A\times A$, that is:
+
+\begin{parts}
+\part reflexive, symmetric, but not transitive;
+\part reflexive, transitive, but not symmetric;
+\part transitive, symmetric, but not reflexive.
+\end{parts}
+
+\end{questions}
+\end{document}
