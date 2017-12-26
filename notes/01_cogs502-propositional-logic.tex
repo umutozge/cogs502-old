@@ -510,7 +510,7 @@ $\mathcal{I}(q,\crbr{(p,1),(q,0)}) = 0$.
 $\mathcal{I}$ we are using capital symbols like $P$ instead of $p$. There is a
 reason for this. The lower-case symbols like $p$, $q$ and so on are part of our
 alphabet and are used to refer to atomic propositions. On the other hand the
-upper-case sypmbols like $P$ are used and will be used to refer to arbitrary
+upper-case symbols like $P$ are used and will be used to refer to arbitrary
 formulas. An arbitrary formula can be of any complexity as well as being atomic.
 If you go back to \xref{isimple} you will see that we started with $P$ but then
 further restricted what $P$ can stand for by the expression `If $P$ is atomic'.
@@ -649,7 +649,7 @@ P & -P \\ \hline
 \end{align}
 
 \item Although negation does not connect any formulas to each other, it is
-established custom to call it a unary connective. Negation denotes the truth
+customary to call it a unary connective. Negation denotes the truth
 function,
 
 \begin{align}
@@ -720,14 +720,6 @@ biconditional is left as an exercise.
 
 \begin{itemize}
 
-\item Both connectives of this section bind less tightly then conjunction and
-alternation. Therefore `$p\lor q\imp r$' is `$((p\lor q) \imp r)$'; you can
-simplify `$(p\lor(q\imp r))$' at most as `$p\lor(q\imp r)$'.
- 
-\end{itemize}
-
-\begin{itemize}
-
 \item Our definition of $L_0$ requires the insertion of parenthesis in every step
 of connection, thereby making every possible sentence unambiguous with regards to
 what is grouped with what. However, for ease of inspection and writing, we will
@@ -739,9 +731,14 @@ omit parentheses according to certain conventions.
 R))$, $((P\land Q)\land R)$ and $P\land Q\land R$ are all equivalent.
 
 \item Negation binds most tightly, $-P\land Q$ is different from $-(P\land Q)$
-and likewise for other connectives wrt negation. Conjunction and disjunction
+and likewise for other connectives wrt negation. 
+
+\item
+Conjunction and disjunction
 bind more tightly than conditional and biconditional: $P\land Q \imp R$  is
-different from $P\land (Q\imp R)$.
+different from $P\land (Q\imp R)$; 
+`$P\lor Q\imp R$' is `$((P\lor Q) \imp R)$'; you can
+simplify `$(P\lor(Q\imp R))$' at most as `$P\lor(Q\imp R)$'.
 
 % \hrulefill
 % \begin{uexample}
