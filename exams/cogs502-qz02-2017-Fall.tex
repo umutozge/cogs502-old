@@ -1,0 +1,40 @@
+\documentclass[11pt]{exam}
+
+\usepackage{umut}
+\usepackage{mathptmx}
+\usepackage{uprog}
+
+\printanswers
+
+\pagestyle{headandfoot}
+	\lhead{Cogs 502 -- Prog. \& Log. \\ Fall 2017}
+	\chead{Quiz 2}
+\rhead{Nov 14}
+\lfoot{}
+\pointname{\%}
+
+
+\begin{document}
+\qformat{\bf Question \thequestion%
+\ifthenelse{\equal{\thepoints}{}}{}{\quad (\thepoints)} \hfill}
+
+\makebox[\textwidth]{Name of the Student:\enspace\hrulefill}
+\vspace{10pt}
+\begin{center}
+\fbox{\parbox{6in}{\bf\centering You have 1 question and 30 minutes to answer it.}}
+\end{center}
+\vspace{10pt}
+
+\begin{questions}
+
+\question 
+
+You are given the program below. Assume that the user will always give a legitimate input; exactly what the string argument to \pyv{input()} asks for. Also note that `\pyv{>=}' means ``greater than or equal to'',  and `\pyv{!=}' means ``not equal to''. You are asked to discover and describe the purpose of this program. Trace the computation of the program over at least one input set of your choice. In giving your trace, it is enough that you give the values of \pyv{x}, \pyv{y} and \pyv{i}, at the \emph{end} of each iteration of the \pyv{for} loop. 
+
+
+\begin{ucodeframe}
+\inputpygments{python}{code/first-two.py}
+\end{ucodeframe}
+
+\end{questions}
+\end{document}

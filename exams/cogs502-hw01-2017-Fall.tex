@@ -1,0 +1,36 @@
+\documentclass[a4paper]{exam}
+
+\usepackage{umut}
+\usepackage{mathptmx}
+\usepackage{uprog}
+
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkbordercolor=red,linkcolor=green,pdfborderstyle={/S/U/W 1}}
+
+%\printanswers
+
+\pagestyle{headandfoot}
+	\lhead{Cogs 502 -- Prog. \& Log. \\ Fall 2017}
+	\chead{Homework 1 of 2}
+\rhead{Due Dec 24, 2017}
+\lfoot{}
+\pointname{\%}
+
+\begin{document}
+
+\begin{questions}
+
+\question
+Write a recursive function that sums all the numbers up to and including \pyv{n}, which should be given as an argument to your function.
+
+\question
+ Binary search is a search algorithm that works on sorted lists. The idea is to compare the search element with the element at the middle of the list, and go on with the same strategy with either the upper half or the lower half, depending on whether the search item is greater or smaller than the middle element. This recursive procedure should stop either (i) when the search item is found, or (ii) nothing is left to compare with the search item. Write two functions: a recursive binary search function, and a function that takes a list, sorts it -- use your own sorting function, builtin sort is NOT allowed -- and sends the sorted list to your recursive binary search function.
+
+\question
+Use your previous solution to write a program that takes a search term and a text file as inputs, and returns whether the search term is in the file or not. Your search will be word based, and case-insensitive. You will need to get rid of the punctuation marks. Those that you need to handle are \pyv{['.',',','?','!',';',':','"']}. Therefore the task requires to read a text file, turn it into a list of words stripped of punctuation and normalized (either all upper or lower case), and do binary search over this list. The comparisons \pyv{<}, \pyv{>}, and the like work on strings as well as numbers. You can find additional string methods by doing \pyv{help(str)} in the console. \href{https://github.com/umutozge/cogs502/blob/master/exams/code/hw01.txt}{Here} is a sample text file for testing purposes.
+  
+\end{questions}
+
+\noindent Submit your code to F{\i}rat by the deadline. Please include your name in the name of the file \emph{and} as a comment in the code itself. The homework should be an individual effort. Feel free to consult me or F{\i}rat, if you need further clarification about the homework. But, to avoid ``spoilers'', please do NOT post your queries to the group.
+
+\end{document}

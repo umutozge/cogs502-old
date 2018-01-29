@@ -1,0 +1,47 @@
+\documentclass[11pt]{exam}
+
+\usepackage{umut}
+\usepackage{mathptmx}
+\usepackage{uprog}
+
+\printanswers
+
+\pagestyle{headandfoot}
+	\lhead{Cogs 502 -- Prog. \& Log. \\ Fall 2017}
+	\chead{Quiz 4}
+\rhead{Dec 12}
+\lfoot{}
+\pointname{\%}
+
+
+\begin{document}
+\qformat{\bf Question \thequestion%
+\ifthenelse{\equal{\thepoints}{}}{}{\quad (\thepoints)} \hfill}
+
+\makebox[\textwidth]{Name of the Student:\enspace\hrulefill}
+\vspace{10pt}
+\begin{center}
+\fbox{\parbox{6in}{\bf\centering 2 questions in 30 minutes}}
+\end{center}
+\vspace{10pt}
+
+\begin{questions}
+
+\question[60] 
+Take any list of \pyv{0}'s and \pyv{1}'s, e.g.\ \pyv{[0,1,1,0,1,1,0,1,0,1]}; process the list from left to right, flipping every element whose right and left neighbors are identical. Flipping an item means making it \pyv{0} if it's \pyv{1}, and making it \pyv{1} if it's \pyv{0}. The example list should yield \pyv{[0,1,1,1,0,0,0,0,0,1]}.
+
+\fillwithlines{\stretch{1}}
+
+\newpage
+
+\question[40] What is the output of the following program:   
+
+\begin{ucodeframe}
+\inputpygments{python}{code/functioncall.py}
+\end{ucodeframe}
+
+
+\fillwithlines{\stretch{1}}
+ 
+\end{questions}
+\end{document}

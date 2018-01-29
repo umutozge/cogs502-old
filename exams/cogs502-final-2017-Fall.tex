@@ -1,0 +1,96 @@
+\documentclass[11pt]{exam}
+
+\usepackage{umut}
+\usepackage{mathptmx}
+\usepackage{uprog}
+
+\printanswers
+
+\pagestyle{headandfoot}
+	\lhead{Cogs 502 -- Prog. \& Log. \\ Fall 2017}
+	\chead{Final Exam}
+\rhead{Jan 16, 2018}
+\lfoot{}
+\pointname{\%}
+
+
+\begin{document}
+\qformat{\bf Question \thequestion%
+\ifthenelse{\equal{\thepoints}{}}{}{\quad (\thepoints)} \hfill}
+
+\makebox[\textwidth]{Name of the Student:\enspace\hrulefill}
+\vspace{10pt}
+\begin{center}
+\fbox{\parbox{6in}{\bf\centering 4 questions in 150 minutes}}
+\end{center}
+\vspace{10pt}
+
+\begin{questions}
+
+\question[20]
+Given the following information:
+
+\begin{quote}
+If wisdom and patience are useful, then there is hope.\\
+If there is hope, there is trouble.\\
+Patience is useful and there is no trouble.
+\end{quote}
+
+What about wisdom, can we decide whether it is useful or not? Motivate your
+answer by constructing a truth-tree.
+\newpage
+\makebox[\textwidth]{Name of the Student:\enspace\hrulefill}
+\vspace{10pt}
+\question
+{\bf Definition:}\\
+Given a set $A$ and a relation $R\subseteq A\times A$.
+We say that $R$ is \emph{connected} if and only if for every \emph{distinct} $x$
+and $y$ in $A$, $(x,y)$ or $(y,x)$ or both are in $R$.
+
+\begin{parts}
+\part[5]
+Given $A = \{1,2,3,4\}$, what is the smallest number of elements a connected
+relation $R$ on $A$ can have. Give such an example relation.
+\vspace*{50pt}
+\part[5]
+Given $A = \{1\}$, is the relation $R=\emptyset$ connected or not?
+\vspace*{30pt}
+\part[10]
+Below is a recursive function that takes two arguments. The first argument, \pyv{baseset}, is a list of integers without repetitions; therefore it represents a set. The second argument, \pyv{relation}, is a binary relation defined over \pyv{baseset}. Binary relations are represented as lists of two element lists. An example call of the function below would be \pyv{connected([1,2,3,4],[[1,3],[3,1]])}.
+
+The code needs some corrections to be able to work properly. What are they?
+
+\begin{ucodeframe}
+\inputpygments{python}{code/connected-wrong.py}
+\end{ucodeframe}
+
+\end{parts}
+\newpage
+\makebox[\textwidth]{Name of the Student:\enspace\hrulefill}
+\vspace{10pt}
+\question[30]
+Write a two argument function \pyv{rotate} that takes a list \pyv{s} and an
+integer \pyv{n} and rotates the list \pyv{s} \pyv{n} places. By rotation what we mean
+	is this:
+
+\pyv{[1,2,3,4]} rotated 1 place is \pyv{[2,3,4,1]}
+
+\pyv{[1,2,3,4]} rotated 2 places is \pyv{[3,4,1,2]}
+
+\pyv{[1,2,3,4]} rotated 5 place is \pyv{[2,3,4,1]}
+
+and so on.
+\fillwithlines{\stretch{1}}
+\newpage
+\makebox[\textwidth]{Name of the Student:\enspace\hrulefill}
+\vspace{10pt}
+\question[30]
+Write a function that takes a possibly nested list and returns a non-nested list.
+It gives \Verb+[1,2,3,4,5]+ for \Verb+[[1,2],3,[4],5]+, or \Verb+[1,2,3]+ for
+\Verb+[[1],[[2]], [[[3]]]]+, and so on.   
+
+Assume you have a function \pyv{is_list()}, which takes a single argument and returns \pyv{True} if the argument is a list, and \pyv{False} otherwise. Take this function as given; you do NOT have to write it.
+
+\fillwithlines{\stretch{1}}
+\end{questions}
+\end{document}

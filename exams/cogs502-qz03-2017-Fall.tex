@@ -1,0 +1,41 @@
+\documentclass[11pt]{exam}
+
+\usepackage{umut}
+\usepackage{mathptmx}
+\usepackage{uprog}
+
+\printanswers
+
+\pagestyle{headandfoot}
+	\lhead{Cogs 502 -- Prog. \& Log. \\ Fall 2017}
+	\chead{Quiz 3}
+\rhead{Nov 28}
+\lfoot{}
+\pointname{\%}
+
+
+\begin{document}
+\qformat{\bf Question \thequestion%
+\ifthenelse{\equal{\thepoints}{}}{}{\quad (\thepoints)} \hfill}
+
+\makebox[\textwidth]{Name of the Student:\enspace\hrulefill}
+\vspace{10pt}
+\begin{center}
+\fbox{\parbox{6in}{\bf\centering 2 questions in 30 minutes}}
+\end{center}
+\vspace{10pt}
+
+\begin{questions}
+
+\question[50] Write a {\bf function} that removes any repeated elements in a given list and returns the resulting list. For example, \pyv{[1,2,1,3,2,1]} should yield \pyv{[1,2,3]}.
+
+\fillwithlines{\stretch{1}}
+
+\newpage
+
+\question[50] Write a {\bf function} that takes two arguments: a list of integers \pyv{k} and an integer \pyv{n}. Your function should return \pyv{True} if it is IMPOSSIBLE to find in \pyv{k} two consecutive integers whose multiplication is greater than \pyv{n}, and \pyv{False} otherwise. Items \pyv{x} and \pyv{y} are consecutive, if the index of \pyv{y} minus the index of \pyv{x} is 1.
+
+\fillwithlines{\stretch{1}}
+ 
+\end{questions}
+\end{document}
